@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #0B0B0B;
+  --color-card-bg: rgba(255, 255, 255, 0.04);
+  --color-accent-red: #FF2B2B;
+  --color-accent-dark: #B30000;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B5B5B5;
+  --color-border-glow: rgba(255, 43, 43, 0.25);
+  
+  --font-sans: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-display: 'Sora', 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-cyber-pulse: cyber-pulse 2s ease-in-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 25s linear infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes cyber-pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 43, 43, 0.15), 0 0 20px rgba(255, 43, 43, 0.05);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(255, 43, 43, 0.4), 0 0 50px rgba(255, 43, 43, 0.15);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Global resets & styles */
+:root {
+  background-color: #050505;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scroll-behavior: auto !important; /* Lenis handles smooth scrolling */
+}
+
+body {
+  margin: 0;
+  background-color: #050505;
+  color: #FFFFFF;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography polish */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #151515;
+  border-radius: 5px;
+  border: 2px solid #050505;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF2B2B;
+  box-shadow: 0 0 15px #FF2B2B;
+}
+
+/* Glassmorphism Refined Design System */
+.glass-panel {
+  background: rgba(5, 5, 5, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.8);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border-color: rgba(255, 43, 43, 0.35);
+  box-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.9), 
+    0 0 30px -5px rgba(255, 43, 43, 0.2);
+  transform: translateY(-8px) scale(1.01);
+}
+
+.neon-border-red {
+  border-color: rgba(255, 43, 43, 0.25);
+  box-shadow: 0 0 20px rgba(255, 43, 43, 0.1);
+}
+
+.neon-border-red:hover {
+  border-color: rgba(255, 43, 43, 0.55);
+  box-shadow: 0 0 35px rgba(255, 43, 43, 0.25);
+}
+
+.glow-text {
+  text-shadow: 0 0 15px rgba(255, 43, 43, 0.45);
+}
+
+.glow-text-strong {
+  text-shadow: 0 0 25px rgba(255, 43, 43, 0.75);
+}
+
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(255, 43, 43, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 43, 43, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center center;
+}
+
+/* Premium gradient buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #FF2B2B 0%, #B30000 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(255, 43, 43, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 10px 30px rgba(255, 43, 43, 0.65), 0 0 15px rgba(255, 43, 43, 0.3);
+  transform: translateY(-3px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: #FF2B2B;
+  background: rgba(255, 43, 43, 0.05);
+  box-shadow: 0 10px 25px rgba(255, 43, 43, 0.25), 0 0 10px rgba(255, 43, 43, 0.15);
+  transform: translateY(-3px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Layout utilities */
+.content-container {
+  max-w: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Lenis scroll styling overrides */
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Swiper Slider styling overrides */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.2) !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #FF2B2B !important;
+  box-shadow: 0 0 10px #FF2B2B;
+  width: 28px !important;
+  border-radius: 5px !important;
+  transition: all 0.3s ease;
+}
+
+/* Custom cursor default hide on desktop */
+@media (min-width: 1024px) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Hide scrollbars for horizontal scrollable elements */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Auto-scrolling horizontal marquee/ticker */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

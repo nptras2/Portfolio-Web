@@ -1,0 +1,34 @@
+# Tasks
+
+- [x] Alignment & Centering Refinements in [Hero3D.jsx](file:///d:/Web%20Dev/src/components/Hero3D.jsx)
+  - [x] Enlarge concentric rings SVG slightly to `w-[460px]/sm:w-[580px]/lg:w-[650px]/xl:w-[710px]`
+  - [x] Adjust rings vertical translation to `-translate-y-6 lg:-translate-y-8 xl:-translate-y-9` to end at upper leg/lower waist and clear navbar
+  - [x] Keep rings horizontal translation at `translate-x-[0%] lg:translate-x-[2%] xl:translate-x-[4%]` and character left offset at `left-[-2%] lg:left-[-6%] xl:left-[-8%]` for perfect centering
+- [x] Loading Synchronization
+  - [x] Wrap Hero3D components in a unified `motion.div` that animate opacity together based on `processedImage` availability, ensuring rings and character fade in together smoothly with no pop-in.
+- [x] Services & Packages Pricing Update in [ServicesSection.jsx](file:///d:/Web%20Dev/src/components/ServicesSection.jsx)
+  - [x] Update Package 1 (Basic Landing Page) price to ₹2,000 and features (single landing page, static website, no login/signup/DB).
+  - [x] Update Package 2 (Premium Website) price to ₹5,000 and features (complete website, modern UI/UX, advanced animations, 3D effects, DB & Auth). Add custom 3D model extra for +₹1,000.
+  - [x] Add a detailed, stylized "Client Rules & Guidelines" card to highlight domain, hosting/maintenance, database traffic tier, and optional monthly website management.
+- [x] Build & Verify
+  - [x] Run `npm run build` to confirm compilation.
+  - [x] Use browser subagent to verify clean layout, centering, and no clipping or navbar overlap.
+- [x] Spacing, Contact & Footer Mobile Optimizations
+  - [x] Globally reduce mobile section padding from `py-32` to `py-14` across all core sections to eliminate empty black scrolling areas.
+  - [x] Redesign mobile contact card in [ContactSection.jsx](file:///d:/Web%20Dev/src/components/ContactSection.jsx) to display as 3 compact glass rows, set max-height to 220px, and reduce form padding.
+  - [x] Completely remove newsletter section on mobile inside [Footer.jsx](file:///d:/Web%20Dev/src/components/Footer.jsx).
+  - [x] Create collapsible Quick Links and Services accordions inside mobile footer with smooth height transitions.
+  - [x] Position social links directly beside the CODELUXE brand logo on mobile view, and create a single-row copyright bottom.
+  - [x] Run build verification to ensure all changes compile successfully.
+- [x] Hero Section Mobile Redesign & Desktop Restoration (LOCKED)
+  - [x] Restore original premium desktop Hero layout (relative grid alignment, baseline pinning, and zero button overlap).
+  - [x] Adjust responsive social bar breakpoint to `lg` to ensure vertical layout on all desktop viewports.
+  - [x] Completely remove feature cards, ribbons, and pill background features from mobile.
+  - [x] Convert mobile CTA buttons to a side-by-side equal-width equal-height grid (`grid-cols-2`) and adjust padding to prevent wrapping text.
+  - [x] Change character container to relative flow layout on mobile (`relative lg:relative w-full h-[320px] xs:h-[350px] z-10 mt-6 lg:mt-0`) so it sits below the CTA buttons with no text overlap, enlarging both the character and concentric ring sizes.
+  - [x] Translate character and concentric rings upward on mobile by `-35px` to keep them centered and avoid overlap with the horizontal bottom socials capsule.
+  - [x] Center character vertically and horizontally inside concentric circles on mobile.
+  - [x] Move floating socials bar on mobile to a horizontal glass capsule (`flex-row bottom-16 w-max`) centered at the bottom of the character with vertical divider lines.
+  - [x] Shift the bouncing red chevron and Scroll To Discover helper to `bottom-4` on mobile and desktop, and move the desktop features row to `lg:bottom-14` to completely resolve any visual overlap.
+  - [x] Replace `overflow-y-auto` with `overflow-hidden` on the HeroSection container to resolve mobile nested scrolling viewport gaps.
+  - [x] Run npm run build to verify zero compiler errors.

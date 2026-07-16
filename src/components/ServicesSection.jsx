@@ -33,6 +33,7 @@ const ServicesSection = () => {
         'Interactive Contact Form & WhatsApp',
       ],
       extras: [
+        { label: '3D Effects & Animations Add-on', value: '+₹1,000' },
         { label: 'Hosting & Maintenance', value: '₹2,000 / year' },
         { label: 'Domain Registration', value: 'Client Owned' },
       ],
@@ -50,7 +51,7 @@ const ServicesSection = () => {
         'Advanced Animations & Interactions',
         '3D Effects & Graphics Included',
         'Auth & Database Ready (Supabase)',
-        'Free Tier Hosting Setup (up to 50k users)',
+        'Free Tier Hosting Setup (50K monthly users as this is supabase condition)',
       ],
       extras: [
         { label: 'Custom 3D Models Add-on', value: '+₹1,000' },

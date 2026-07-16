@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Play, Pause, Volume2, VolumeX, Maximize } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { supabase } from '../supabaseClient';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -131,16 +132,56 @@ const VideoCard = ({ video, className, isActive }) => {
 };
 
 const RecentWorkVideos = () => {
+  const [works, setWorks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
 
+  useEffect(() => {
+    const fetchWorks = async () => {
+      try {
+        if (!supabase) {
+          setWorks(videoData);
+          setLoading(false);
+          return;
+        }
+        const { data, error } = await supabase
+          .from('recent_works')
+          .select('*')
+          .order('id', { ascending: true });
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          const mappedData = data.map(item => ({
+            id: item.id,
+            title: item.title,
+            desc: item.description,
+            videoSrc: item.video_url,
+            category: item.card_image_url || 'Featured Work'
+          }));
+          setWorks(mappedData);
+        } else {
+          setWorks(videoData);
+        }
+      } catch (err) {
+        console.error('Error fetching recent works:', err);
+        setWorks(videoData);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWorks();
+  }, []);
+
   const handleScroll = () => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || works.length === 0) return;
     const container = containerRef.current;
     const scrollLeft = container.scrollLeft;
-    const cardWidth = container.scrollWidth / videoData.length;
+    const cardWidth = container.scrollWidth / works.length;
     const newIndex = Math.round(scrollLeft / cardWidth);
-    if (newIndex >= 0 && newIndex < videoData.length) {
+    if (newIndex >= 0 && newIndex < works.length) {
       setActiveIndex(newIndex);
     }
   };
@@ -164,72 +205,81 @@ const RecentWorkVideos = () => {
         </p>
       </div>
 
-      {/* Desktop View: Swiper Slider (Unchanged) */}
-      <div className="hidden md:block w-full relative px-6 z-10">
-        <Swiper
-          spaceBetween={32}
-          slidesPerView="auto"
-          className="swiper-container"
-          loop={false}
-        >
-          {videoData.map((video) => (
-            <SwiperSlide key={video.id} style={{ width: 'auto' }}>
-              <VideoCard video={video} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      {loading ? (
+        <div className="w-full py-20 flex flex-col items-center justify-center gap-3 relative z-10">
+          <div className="w-8 h-8 rounded-full border-2 border-accent-red/15 border-t-accent-red animate-spin" />
+          <span className="text-[9px] uppercase font-black tracking-widest text-text-secondary">Loading Works...</span>
+        </div>
+      ) : (
+        <>
+          {/* Desktop View: Swiper Slider (Unchanged) */}
+          <div className="hidden md:block w-full relative px-6 z-10">
+            <Swiper
+              spaceBetween={32}
+              slidesPerView="auto"
+              className="swiper-container"
+              loop={false}
+            >
+              {works.map((video) => (
+                <SwiperSlide key={video.id} style={{ width: 'auto' }}>
+                  <VideoCard video={video} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
 
-      {/* Mobile View: Snapping Swipe Carousel */}
-      <div className="block md:hidden w-full relative z-10 px-4">
-        <div 
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="w-full overflow-x-auto scrollbar-none flex gap-4 snap-x snap-mandatory px-4 pb-4"
-        >
-          {videoData.map((video, idx) => {
-            const isActive = activeIndex === idx;
-            return (
-              <div 
-                key={video.id} 
-                className="snap-center shrink-0 w-[80vw] h-[65vh] flex items-center justify-center"
-              >
-                <VideoCard 
-                  video={video} 
-                  isActive={isActive}
-                  className={`w-full h-full p-5 rounded-[28px] bg-white/2 border flex flex-col justify-between relative overflow-hidden transition-all duration-300 ${
-                    isActive 
-                      ? 'border-accent-red/35 scale-100 shadow-[0_0_25px_rgba(255,43,43,0.1)]' 
-                      : 'border-white/5 scale-[0.93] opacity-65'
-                  }`} 
+          {/* Mobile View: Snapping Swipe Carousel */}
+          <div className="block md:hidden w-full relative z-10 px-4">
+            <div 
+              ref={containerRef}
+              onScroll={handleScroll}
+              className="w-full overflow-x-auto scrollbar-none flex gap-4 snap-x snap-mandatory px-4 pb-4"
+            >
+              {works.map((video, idx) => {
+                const isActive = activeIndex === idx;
+                return (
+                  <div 
+                    key={video.id} 
+                    className="snap-center shrink-0 w-[80vw] h-[65vh] flex items-center justify-center"
+                  >
+                    <VideoCard 
+                      video={video} 
+                      isActive={isActive}
+                      className={`w-full h-full p-5 rounded-[28px] bg-white/2 border flex flex-col justify-between relative overflow-hidden transition-all duration-300 ${
+                        isActive 
+                          ? 'border-accent-red/35 scale-100 shadow-[0_0_25px_rgba(255,43,43,0.1)]' 
+                          : 'border-white/5 scale-[0.93] opacity-65'
+                      }`} 
+                    />
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Progress dots */}
+            <div className="flex justify-center gap-2 mt-5">
+              {works.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    if (containerRef.current) {
+                      const cardWidth = containerRef.current.scrollWidth / works.length;
+                      containerRef.current.scrollTo({ left: idx * cardWidth, behavior: 'smooth' });
+                    }
+                  }}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeIndex === idx ? 'bg-accent-red w-6 shadow-[0_0_8px_#FF2B2B]' : 'bg-white/20'}`}
+                  aria-label={`Go to slide ${idx + 1}`}
                 />
-              </div>
-            );
-          })}
-        </div>
+              ))}
+            </div>
 
-        {/* Progress dots */}
-        <div className="flex justify-center gap-2 mt-5">
-          {videoData.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => {
-                if (containerRef.current) {
-                  const cardWidth = containerRef.current.scrollWidth / videoData.length;
-                  containerRef.current.scrollTo({ left: idx * cardWidth, behavior: 'smooth' });
-                }
-              }}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeIndex === idx ? 'bg-accent-red w-6 shadow-[0_0_8px_#FF2B2B]' : 'bg-white/20'}`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Swipe Helper Text */}
-        <p className="text-text-secondary/50 text-[9px] uppercase font-black tracking-widest mt-3.5 animate-pulse text-center">
-          Swipe → Next Project
-        </p>
-      </div>
+            {/* Swipe Helper Text */}
+            <p className="text-text-secondary/50 text-[9px] uppercase font-black tracking-widest mt-3.5 animate-pulse text-center">
+              Swipe → Next Project
+            </p>
+          </div>
+        </>
+      )}
     </section>
   );
 };

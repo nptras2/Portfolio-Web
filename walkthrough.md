@@ -213,3 +213,32 @@ We redesigned the mobile Hero section to match the reference layout 1:1, while f
 - **Desktop Restored Hero Section**: ![Desktop Restored Hero](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/desktop_hero_final_verify_1782741364444.png)
 - **Mobile Redesigned Hero Top**: ![Mobile Hero Top](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/mobile_hero_section_1782740254863.png)
 - **Mobile Redesigned Hero Bottom**: ![Mobile Hero Bottom](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/mobile_hero_bottom_1782740302909.png)
+
+## 8. Supabase Integrations & Package Tweaks
+
+We integrated Supabase as the data layer for quote submissions and dynamic portfolio video walkthroughs:
+
+### 1. SQL Schema Creation
+- Created [supabase_schema.sql](file:///d:/Web%20Dev/supabase_schema.sql) with table definitions, RLS (Row Level Security) policies, and tables for `quotes` (including a `phone` field) and `recent_works`.
+
+### 2. Supabase Client Configuration
+- Configured a dynamic client in [supabaseClient.js](file:///d:/Web%20Dev/src/supabaseClient.js) that validates environment variables (`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`) and falls back gracefully to prevent crashes.
+
+### 3. Contact Quote Submissions & Phone Validation
+- Updated [ContactSection.jsx](file:///d:/Web%20Dev/src/components/ContactSection.jsx) to collect the user's phone number with a customizable country code dropdown (`+91`, `+1`, `+44`, `+971`, etc.) and a 10-digit number field.
+- Implemented strict numeric character filtration and exactly 10-digit constraint checks inside the input handler.
+- Configured the submission to save the combined phone string to the `phone` column of the `quotes` table.
+
+### 4. Custom Animated Toast Feedback
+- Replaced standard browser alert dialogs with a custom inline toast notification component styled in CodeLuxe cyberpunk theme.
+- Utilizes `AnimatePresence` to render a red-glowing success toast with a pulsing dot, notifying the user: *'Your Request is submitted! We will contact you shortly, or you can WhatsApp us by clicking the WhatsApp icon.'*
+
+### 5. Dynamic Portfolio Works
+- Updated [RecentWorkVideos.jsx](file:///d:/Web%20Dev/src/components/RecentWorkVideos.jsx) to dynamically fetch and map portfolio videos from the `recent_works` table of the database, with skeleton loading and fallbacks to local mock data.
+
+### 6. Package Details Corrections
+- **₹2,000 Package**: Added the `3D Effects & Animations Add-on` with value `+₹1,000` to the package extras in [ServicesSection.jsx](file:///d:/Web%20Dev/src/components/ServicesSection.jsx).
+- **₹5,000 Package**: Updated hosting description to: `Free Tier Hosting Setup (50K monthly users as this is supabase condition)`.
+
+### Phone UI Verification Screenshot
+- **Contact Form Phone Selector**: ![Phone UI mobile screenshot](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/contact_form_mobile_1783682630762.png)

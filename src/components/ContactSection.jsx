@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { supabase } from '../supabaseClient';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phoneCode: '+91',
+    phone: '',
     projectType: 'Static Website',
     message: '',
   });
 
   const [focusedField, setFocusedField] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState({ show: false, type: 'success', message: '' });
+
+  const showToast = (type, message) => {
+    setToast({ show: true, type, message });
+    setTimeout(() => {
+      setToast({ show: false, type: 'success', message: '' });
+    }, 10000); // 10 seconds display time
+  };
 
   const handleFocus = (fieldName) => setFocusedField(fieldName);
   const handleBlur = (fieldName) => {
@@ -19,13 +31,56 @@ const ContactSection = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === 'phone') {
+      const numericVal = e.target.value.replace(/\D/g, '').slice(0, 10);
+      setFormData({ ...formData, phone: numericVal });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Thank you, ${formData.name}! Your request for a "${formData.projectType}" quote has been received. CodeLuxe will contact you shortly.`);
-    setFormData({ name: '', email: '', projectType: 'Static Website', message: '' });
+
+    if (formData.phone.length !== 10) {
+      showToast('error', 'Please enter a valid 10-digit mobile number.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const fullPhone = `${formData.phoneCode} ${formData.phone}`;
+
+      if (!supabase) {
+        // Fallback simulated success
+        showToast('success', 'Your Request is submitted! We will contact you shortly, or you can WhatsApp us by clicking the WhatsApp icon.');
+        setFormData({ name: '', email: '', phoneCode: '+91', phone: '', projectType: 'Static Website', message: '' });
+        return;
+      }
+
+      const { error } = await supabase
+        .from('quotes')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: fullPhone,
+            subject: formData.projectType,
+            message: formData.message
+          }
+        ]);
+
+      if (error) throw error;
+
+      showToast('success', 'Your Request is submitted! We will contact you shortly, or you can WhatsApp us by clicking the WhatsApp icon.');
+      setFormData({ name: '', email: '', phoneCode: '+91', phone: '', projectType: 'Static Website', message: '' });
+    } catch (error) {
+      console.error('Error saving quote:', error);
+      showToast('error', 'Failed to submit. Please click the WhatsApp button below to message us directly!');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const coordinates = [
@@ -204,6 +259,59 @@ const ContactSection = () => {
                 </motion.label>
               </div>
 
+              {/* Phone Field with Country Code Selection */}
+              <div className="flex gap-3 w-full text-left">
+                {/* Country Code Select */}
+                <div className="relative w-[110px] shrink-0">
+                  <select
+                    name="phoneCode"
+                    value={formData.phoneCode}
+                    onChange={handleChange}
+                    className="w-full h-full bg-[#0a0a0a] border border-white/10 rounded-xl px-3 py-4 text-sm text-white focus:outline-none focus:border-accent-red transition-all appearance-none cursor-pointer font-sans font-semibold text-center"
+                  >
+                    <option value="+91">🇮🇳 +91</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+971">🇦🇪 +971</option>
+                    <option value="+61">🇦🇺 +61</option>
+                    <option value="+65">🇸🇬 +65</option>
+                    <option value="+49">🇩🇪 +49</option>
+                  </select>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary text-[8px] font-bold">
+                    ▼
+                  </div>
+                </div>
+
+                {/* Number Input */}
+                <div className="relative flex-1">
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="form-phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onFocus={() => handleFocus('phone')}
+                    onBlur={() => handleBlur('phone')}
+                    required
+                    pattern="[0-9]{10}"
+                    className="w-full bg-white/2 border border-white/10 rounded-xl px-4 py-4 text-sm text-white placeholder-transparent focus:outline-none focus:border-accent-red transition-all font-sans font-semibold tracking-wider"
+                  />
+                  <motion.label
+                    htmlFor="form-phone"
+                    className="absolute left-4 pointer-events-none text-text-secondary text-xs font-black tracking-wider font-display"
+                    initial={false}
+                    animate={{
+                      top: focusedField === 'phone' || formData.phone ? '6px' : '17px',
+                      fontSize: focusedField === 'phone' || formData.phone ? '8px' : '11px',
+                      color: focusedField === 'phone' ? '#FF2B2B' : '#B5B5B5',
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    10-DIGIT MOBILE NUMBER
+                  </motion.label>
+                </div>
+              </div>
+
               {/* Project Type Selector */}
               <div className="relative w-full text-left">
                 <select
@@ -250,12 +358,35 @@ const ContactSection = () => {
                 </motion.label>
               </div>
 
+              {/* Toast Notification Container */}
+              <AnimatePresence>
+                {toast.show && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: 10 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className={`p-4 rounded-xl border text-xs leading-relaxed font-sans font-bold flex flex-col gap-2 ${
+                      toast.type === 'success'
+                        ? 'border-accent-red/25 bg-accent-red/5 text-white shadow-[0_0_15px_rgba(255,43,43,0.1)]'
+                        : 'border-amber-500/25 bg-amber-500/5 text-amber-400'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-accent-red animate-pulse shrink-0" />
+                      <span>{toast.message}</span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl btn-primary text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-accent-red/25 hover:shadow-accent-red/45"
+                disabled={submitting}
+                className={`w-full py-4 rounded-xl btn-primary text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-accent-red/25 hover:shadow-accent-red/45 transition-all duration-300 ${submitting ? 'opacity-50 pointer-events-none' : ''}`}
               >
-                Send Proposal Inquiry
+                {submitting ? 'Sending Proposal Inquiry...' : 'Send Proposal Inquiry'}
                 <Send className="w-3.5 h-3.5" />
               </button>
 

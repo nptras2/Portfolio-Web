@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaDiscord, FaTwitter, FaDribbble, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Mail, Phone, MapPin, ArrowRight, ChevronDown } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 // Toggle to show/hide the Portfolio link
 const SHOW_PORTFOLIO = false;
@@ -23,7 +24,7 @@ const Footer = () => {
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    alert('Thank you for subscribing! Welcome to CodeLuxe.');
+    alert('Thank you for subscribing! Welcome to abcdwebsite.');
     e.target.reset();
   };
 
@@ -75,16 +76,20 @@ const Footer = () => {
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, '#home')}
-            className="flex items-center gap-2"
+            className="flex items-center gap-3"
           >
-            <span className="text-2xl font-black tracking-wider text-white">
-              CODE<span className="text-accent-red">LUXE</span>
+            <img 
+              src={logoImg} 
+              alt="abcdwebsite logo" 
+              className="w-7 h-7 object-contain rounded-full shadow-[0_0_10px_rgba(255,43,43,0.3)]"
+            />
+            <span className="text-xl font-black tracking-wider text-white font-sans uppercase">
+              abcd<span className="text-accent-red">website</span>
             </span>
-            <div className="w-1.5 h-1.5 bg-accent-red rounded-full animate-cyber-pulse" />
           </a>
           <p className="text-text-secondary text-sm leading-relaxed max-w-sm">
             We build digital experiences that represent luxury, speed, and immersive design. 
-            CodeLuxe is a world-class creative studio crafting high-end premium websites.
+            abcdwebsite is a world-class creative studio crafting high-end premium websites.
           </p>
           {/* Social icons */}
           <div className="flex items-center gap-3">
@@ -182,12 +187,16 @@ const Footer = () => {
             <a
               href="#home"
               onClick={(e) => scrollToSection(e, '#home')}
-              className="flex items-center gap-1.5"
+              className="flex items-center gap-2"
             >
-              <span className="text-lg font-black tracking-wider text-white">
-                CODE<span className="text-accent-red">LUXE</span>
+              <img 
+                src={logoImg} 
+                alt="abcdwebsite logo" 
+                className="w-6 h-6 object-contain rounded-full shadow-[0_0_8px_rgba(255,43,43,0.3)]"
+              />
+              <span className="text-base font-black tracking-wider text-white font-sans uppercase">
+                abcd<span className="text-accent-red">website</span>
               </span>
-              <div className="w-1.5 h-1.5 bg-accent-red rounded-full animate-cyber-pulse" />
             </a>
 
             {/* Social Icons beside Logo */}
@@ -306,7 +315,7 @@ const Footer = () => {
       {/* Footer Bottom info */}
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-xs text-text-secondary gap-4 relative z-10">
         <div className="text-center md:text-left text-[10px] md:text-xs">
-          &copy; {currentYear} <span className="text-white font-semibold">CodeLuxe</span>. Built with React + Three.js
+          &copy; {currentYear} <span className="text-white font-semibold">abcdwebsite</span>. Built with React + Three.js
         </div>
         <div className="flex gap-4 text-[10px] md:text-xs">
           <a href="#" className="hover:text-accent-red transition-colors">Privacy Policy</a>

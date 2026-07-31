@@ -87,8 +87,8 @@ const ContactSection = () => {
     {
       icon: <Mail className="w-5 h-5 text-accent-red" />,
       label: 'Email Address',
-      value: 'hello@codeluxe.com',
-      href: 'mailto:hello@codeluxe.com',
+      value: 'hello@abcdwebsite.com',
+      href: 'mailto:hello@abcdwebsite.com',
     },
     {
       icon: <Phone className="w-5 h-5 text-accent-red" />,
@@ -133,7 +133,7 @@ const ContactSection = () => {
           <div className="hidden lg:flex lg:col-span-2 flex-col justify-between gap-10 text-left bg-white/2 border border-white/5 rounded-[32px] p-8 sm:p-10 shadow-2xl">
             <div>
               <h3 className="text-xl font-black uppercase text-white tracking-wide font-display mb-8">
-                CodeLuxe Contacts
+                abcdwebsite Contacts
               </h3>
               
               <div className="flex flex-col gap-6.5">
@@ -166,7 +166,7 @@ const ContactSection = () => {
                 DIRECT CHAT DISPATCH
               </span>
               <a
-                href="https://api.whatsapp.com/send/?phone=919999999999&text=Hello+CODELUXE%21+I+would+like+to+get+started."
+                href="https://api.whatsapp.com/send/?phone=919999999999&text=Hello+ABCD+WEBSITE%21+I+would+like+to+get+started."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-[#25d366]/20 transition-all duration-300 cursor-pointer"

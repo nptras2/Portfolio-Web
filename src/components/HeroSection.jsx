@@ -194,7 +194,7 @@ const HeroSection = () => {
         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#FF0000] hover:scale-110 hover:shadow-[0_0_15px_rgba(255,0,0,0.2)] transition-all duration-300">
           <FaYoutube className="w-5 h-5" />
         </a>
-        <a href="mailto:hello@codeluxe.dev" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-accent-red hover:scale-110 hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] transition-all duration-300">
+        <a href="mailto:hello@abcdwebsite.com" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-accent-red hover:scale-110 hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] transition-all duration-300">
           <FaEnvelope className="w-5 h-5" />
         </a>
       </div>

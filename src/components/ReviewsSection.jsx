@@ -21,7 +21,7 @@ const ReviewsSection = () => {
       company: 'Future Enterprise',
       title: 'Product Director',
       rating: 5,
-      quote: 'Partner with CodeLuxe to transform your ideas into luxury digital architectures. Your rating, logo, and review could be showcasing your digital growth here.',
+      quote: 'Partner with abcdwebsite to transform your ideas into luxury digital architectures. Your rating, logo, and review could be showcasing your digital growth here.',
       date: 'Next Project',
     }
   ];

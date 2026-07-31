@@ -10,7 +10,7 @@ const CTABanner = () => {
   };
 
   const whatsappNumber = '919999999999';
-  const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Hello+CODELUXE%21+I+would+like+to+discuss+a+new+project+quote.`;
+  const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Hello+ABCD+WEBSITE%21+I+would+like+to+discuss+a+new+project+quote.`;
 
   return (
     <section className="py-14 md:py-24 bg-bg-primary relative overflow-hidden">

@@ -370,7 +370,7 @@ pointer-events-none overflow-visible
           {/* Render the processed transparent image for perfect dark-background integration */}
           <img
             src={processedImage || developerCharacterRaw}
-            alt="CodeLuxe Cyber Developer"
+            alt="abcdwebsite Cyber Developer"
             className="w-full h-full object-contain object-bottom select-none pointer-events-none transition-opacity duration-300"
             style={{
               opacity: processedImage ? 1 : 0, // Fade-in when transparency processing is complete

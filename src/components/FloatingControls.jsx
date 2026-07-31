@@ -26,7 +26,7 @@ const FloatingControls = () => {
   };
 
   const whatsappNumber = '919999999999'; // Placeholder format: Country code + Number
-  const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Hello+CODELUXE%21+I+would+like+to+discuss+a+project+with+your+agency.`;
+  const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Hello+ABCD+WEBSITE%21+I+would+like+to+discuss+a+project+with+your+agency.`;
 
   return (
     <>
@@ -42,7 +42,7 @@ const FloatingControls = () => {
         aria-label="Contact us on WhatsApp"
       >
         <span className="absolute left-16 px-3 py-1.5 rounded-lg bg-bg-secondary border border-white/5 text-xs text-white font-medium opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 whitespace-nowrap shadow-xl">
-          Chat with CodeLuxe
+          Chat with abcdwebsite
         </span>
         <FaWhatsapp className="w-7 h-7" />
       </motion.a>

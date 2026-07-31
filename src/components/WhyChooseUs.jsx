@@ -102,7 +102,7 @@ const WhyChooseUs = () => {
             AGENCY EXCELLENCE
           </span>
           <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight font-display">
-            Why Choose CodeLuxe
+            Why Choose abcdwebsite
           </h2>
           <p className="text-text-secondary text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed font-sans">
             We merge luxury graphics with high-performance frameworks to construct unforgettable websites.

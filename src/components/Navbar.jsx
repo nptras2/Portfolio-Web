@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 // Toggle to show/hide the Portfolio section and nav item
 const SHOW_PORTFOLIO = false;
@@ -103,12 +104,16 @@ const Navbar = () => {
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, '#home')}
-            className="flex items-center gap-2.5 group relative"
+            className="flex items-center gap-3 group relative"
           >
-            <span className="text-2xl font-black tracking-widest text-white uppercase font-sans">
-              CODE<span className="text-accent-red group-hover:text-white transition-colors duration-300">LUXE</span>
+            <img 
+              src={logoImg} 
+              alt="abcdwebsite logo" 
+              className="w-9 h-9 object-contain rounded-full shadow-[0_0_15px_rgba(255,43,43,0.35)] group-hover:scale-105 transition-all duration-300"
+            />
+            <span className="text-xl font-black tracking-widest text-white uppercase font-sans">
+              abcd<span className="text-accent-red group-hover:text-white transition-colors duration-300">website</span>
             </span>
-            <span className="w-2 h-2 rounded-full bg-accent-red animate-cyber-pulse" />
           </a>
 
           {/* Spacing adjusted nav items for desktop */}

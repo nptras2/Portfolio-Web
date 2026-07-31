@@ -50,10 +50,10 @@ const AboutSection = () => {
               OUR IDENTITY
             </span>
             <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight font-display">
-              About CodeLuxe
+              About abcdwebsite
             </h2>
             <p className="text-text-secondary text-sm md:text-base leading-relaxed max-w-xl font-sans">
-              CodeLuxe is a world-class creative digital agency. We construct immersive, speed-optimized web platforms that help premium brands represent themselves in the modern internet age.
+              abcdwebsite is a world-class creative digital agency. We construct immersive, speed-optimized web platforms that help premium brands represent themselves in the modern internet age.
             </p>
             
             {/* Pillars */}
@@ -76,7 +76,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Right Column: CodeLuxe Technology Core Visualization */}
+          {/* Right Column: abcdwebsite Technology Core Visualization */}
           <div className="relative flex justify-center items-center h-[450px] w-full max-w-[550px] mx-auto">
             
             {/* Desktop View: 4 Connected Corner Cards (Unchanged except visuals) */}

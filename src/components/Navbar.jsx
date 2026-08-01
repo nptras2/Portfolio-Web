@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, Phone } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 
 // Toggle to show/hide the Portfolio section and nav item
@@ -143,6 +143,13 @@ const Navbar = () => {
 
           {/* Premium Right CTA Button */}
           <div className="hidden lg:flex items-center">
+            <a 
+              href="tel:+919100920018" 
+              className="mr-6 flex items-center gap-2 text-xs font-black text-text-secondary hover:text-accent-red hover:scale-105 transition-all duration-300"
+            >
+              <Phone className="w-3.5 h-3.5 text-accent-red animate-pulse" />
+              <span>+91 91009 20018</span>
+            </a>
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, '#contact')}
@@ -241,6 +248,17 @@ const Navbar = () => {
                 >
                   Let's Build
                   <ArrowRight className="w-4 h-4" />
+                </motion.a>
+
+                <motion.a
+                  href="tel:+919100920018"
+                  className="mt-4 text-xs font-black tracking-widest text-text-secondary hover:text-accent-red flex items-center justify-center gap-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: (navItems.length + 1) * 0.05, ease: 'easeOut' }}
+                >
+                  <Phone className="w-3.5 h-3.5 text-accent-red animate-pulse" />
+                  +91 91009 20018
                 </motion.a>
               </div>
             </motion.div>

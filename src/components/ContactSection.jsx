@@ -87,14 +87,14 @@ const ContactSection = () => {
     {
       icon: <Mail className="w-5 h-5 text-accent-red" />,
       label: 'Email Address',
-      value: 'hello@abcdwebsite.com',
-      href: 'mailto:hello@abcdwebsite.com',
+      value: 'team.abcdwebsite@gmail.com',
+      href: 'mailto:team.abcdwebsite@gmail.com',
     },
     {
       icon: <Phone className="w-5 h-5 text-accent-red" />,
       label: 'Phone Call',
-      value: '+91 99999 99999',
-      href: 'tel:+919999999999',
+      value: '+91 91009 20018',
+      href: 'tel:+919100920018',
     },
     {
       icon: <MapPin className="w-5 h-5 text-accent-red" />,
@@ -166,7 +166,7 @@ const ContactSection = () => {
                 DIRECT CHAT DISPATCH
               </span>
               <a
-                href="https://api.whatsapp.com/send/?phone=919999999999&text=Hello+ABCD+WEBSITE%21+I+would+like+to+get+started."
+                href="https://api.whatsapp.com/send/?phone=919100920018&text=Hello+ABCD+WEBSITE%21+I+would+like+to+get+started."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-[#25d366]/20 transition-all duration-300 cursor-pointer"

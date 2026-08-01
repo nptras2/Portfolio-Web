@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Paintbrush, Compass, Cpu, CheckCircle } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 const AboutSection = () => {
   const [activeTechIdx, setActiveTechIdx] = useState(0);
@@ -49,12 +50,20 @@ const AboutSection = () => {
             <span className="text-[10px] font-black uppercase tracking-widest text-accent-red glow-text font-display">
               OUR IDENTITY
             </span>
-            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight font-display">
-              About abcdwebsite
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight font-display leading-tight">
+              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-red via-[#ff4d4d] to-accent-dark glow-text-strong">ABCDWEBSITE</span>
             </h2>
-            <p className="text-text-secondary text-sm md:text-base leading-relaxed max-w-xl font-sans">
-              abcdwebsite is a world-class creative digital agency. We construct immersive, speed-optimized web platforms that help premium brands represent themselves in the modern internet age.
-            </p>
+            <div className="flex flex-col gap-4 max-w-xl">
+              <span className="text-xs font-black uppercase tracking-wider text-accent-red font-display">
+                ABCD &mdash; Advancing Brands. Creating Digital.
+              </span>
+              <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-sans">
+                At <span className="text-white font-semibold">abcdwebsite.com</span>, we believe every business deserves a world-class digital presence. We specialize in crafting premium websites, immersive 3D experiences, and high-converting brand identities that help startups, entrepreneurs, and businesses stand out in a competitive market.
+              </p>
+              <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-sans">
+                ABCD stands for <span className="text-white font-semibold">Advancing Brands. Creating Digital.</span> It's more than a name&mdash;it's our mission. Every project is designed with strategy, modern technology, and exceptional attention to detail, delivering websites that are not only visually stunning but also built to grow businesses.
+              </p>
+            </div>
             
             {/* Pillars */}
             <div className="flex flex-col gap-7 mt-6 w-full">
@@ -100,8 +109,11 @@ const AboutSection = () => {
 
               {/* Glowing core logo */}
               <div className="w-28 h-28 rounded-full bg-[#050505] border border-accent-red/35 flex flex-col items-center justify-center shadow-[0_0_45px_rgba(255,43,43,0.22)] relative z-10">
-                <span className="text-[10px] font-black tracking-widest text-white font-display">CODE</span>
-                <span className="text-[9px] font-black text-accent-red tracking-widest font-display mt-0.5">LUXE</span>
+                <img 
+                  src={logoImg} 
+                  alt="abcdwebsite logo" 
+                  className="w-[115%] h-[115%] object-contain rounded-full shadow-[0_0_20px_rgba(255,43,43,0.2)]"
+                />
                 <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-accent-red rounded-full animate-ping" />
               </div>
 
@@ -181,8 +193,11 @@ const AboutSection = () => {
                   <div className="absolute w-20 h-20 border border-white/5 rounded-full animate-spin-slow" />
                   <div className="absolute w-[96px] h-[96px] border border-accent-red/10 border-dashed rounded-full animate-spin [animation-duration:25s]" />
                   <div className="w-20 h-20 rounded-full bg-[#050505] border border-accent-red/35 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(255,43,43,0.18)] z-10">
-                    <span className="text-[8px] font-black tracking-widest text-white font-display">CODE</span>
-                    <span className="text-[7px] font-black text-accent-red tracking-widest font-display mt-0.5">LUXE</span>
+                    <img 
+                      src={logoImg} 
+                      alt="abcdwebsite logo" 
+                      className="w-[115%] h-[115%] object-contain rounded-full shadow-[0_0_15px_rgba(255,43,43,0.18)]"
+                    />
                   </div>
                 </div>
               </div>

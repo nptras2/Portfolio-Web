@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaDiscord, FaTwitter, FaDribbble, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaDiscord, FaTwitter, FaDribbble, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Mail, Phone, MapPin, ArrowRight, ChevronDown } from 'lucide-react';
 import logoImg from '../assets/logo.png';
@@ -49,9 +49,8 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: <FaGithub className="w-5 h-5" />, href: 'https://github.com', label: 'GitHub' },
-    // { icon: <FaDiscord className="w-5 h-5" />, href: 'https://discord.com', label: 'Discord' },
-    { icon: <FaXTwitter className="w-5 h-5" />, href: 'https://x.com', label: 'X.com' },
-    // { icon: <FaDribbble className="w-5 h-5" />, href: 'https://dribbble.com', label: 'Dribbble' },
+    { icon: <FaXTwitter className="w-5 h-5" />, href: 'https://x.com/abcdwebsite', label: 'X.com' },
+    { icon: <FaInstagram className="w-5 h-5" />, href: 'https://instagram.com/abcdwebsite', label: 'Instagram' },
     { icon: <FaLinkedin className="w-5 h-5" />, href: 'https://linkedin.com', label: 'LinkedIn' },
   ];
 

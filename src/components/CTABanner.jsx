@@ -9,7 +9,7 @@ const CTABanner = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const whatsappNumber = '919999999999';
+  const whatsappNumber = '919100920018';
   const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Hello+ABCD+WEBSITE%21+I+would+like+to+discuss+a+new+project+quote.`;
 
   return (

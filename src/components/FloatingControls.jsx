@@ -25,7 +25,7 @@ const FloatingControls = () => {
     });
   };
 
-  const whatsappNumber = '919999999999'; // Placeholder format: Country code + Number
+  const whatsappNumber = '919100920018'; // Placeholder format: Country code + Number
   const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Hello+ABCD+WEBSITE%21+I+would+like+to+discuss+a+project+with+your+agency.`;
 
   return (

@@ -92,48 +92,34 @@ function App() {
         {/* 1. HERO SECTION */}
         <HeroSection />
 
-        {/* 2. LOGO WALL TECHNOLOGIES */}
-        <Technologies />
-
-        {/* 3. SERVICES / PRICING SECTION */}
-        <ServicesSection />
-
-        {/* 4. THEMES SHOWCASE SECTION (Lazy Loaded) */}
-        {SHOW_THEMES && (
-          <Suspense fallback={<SectionLoader name="Themes Showcase" />}>
-            <ThemesShowcase />
-          </Suspense>
-        )}
-
-        {/* 5. PORTFOLIO SECTION (Lazy Loaded) */}
-        {SHOW_PORTFOLIO && (
-          <Suspense fallback={<SectionLoader name="Portfolio" />}>
-            <PortfolioSection />
-          </Suspense>
-        )}
-
-        {/* 6. RECENT WORK VIDEOS SECTION (Lazy Loaded) */}
+        {/* 2. RECENT WORK VIDEOS SECTION (Lazy Loaded - My Work) */}
         <Suspense fallback={<SectionLoader name="Recent Walkthroughs" />}>
           <RecentWorkVideos />
         </Suspense>
 
-        {/* 7. METHODOLOGY PROCESS TIMELINE */}
+        {/* 3. LOGO WALL TECHNOLOGIES */}
+        <Technologies />
+
+        {/* 4. METHODOLOGY PROCESS TIMELINE */}
         <ProcessSection />
 
-        {/* 8. STATISTICS / WHY CHOOSE US */}
+        {/* 5. SERVICES / PRICING SECTION */}
+        <ServicesSection />
+
+        {/* 6. ABOUT AGENCY PORTRAIT */}
+        <AboutSection />
+
+        {/* 7. STATISTICS / WHY CHOOSE US */}
         <WhyChooseUs />
 
-        {/* 9. ABOUT AGENCY PORTRAIT */}
-        <AboutSection />
+        {/* 8. CONVERSION-FOCUSED CTA BANNER */}
+        <CTABanner />
+
+        {/* 9. FLOATING FORM CONTACT SECTION */}
+        <ContactSection />
 
         {/* 10. REVIEWS SECTION PLACEHOLDER */}
         <ReviewsSection />
-
-        {/* 11. CONVERSION-FOCUSED CTA BANNER */}
-        <CTABanner />
-
-        {/* 12. FLOATING FORM CONTACT SECTION */}
-        <ContactSection />
         
       </main>
 

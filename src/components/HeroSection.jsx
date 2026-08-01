@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import { LayoutGrid, Zap, Search, ShieldCheck, ChevronDown, ArrowRight, Play } from 'lucide-react';
 import { FaWhatsapp, FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Hero3D = lazy(() => import('./Hero3D'));
 
@@ -190,8 +191,8 @@ const HeroSection = () => {
         <a href="https://instagram.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#E1306C] hover:scale-110 hover:shadow-[0_0_15px_rgba(225,48,108,0.2)] transition-all duration-300">
           <FaInstagram className="w-5 h-5" />
         </a>
-        <a href="https://x.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#1DA1F2] hover:scale-110 hover:shadow-[0_0_15px_rgba(29,161,242,0.2)] transition-all duration-300">
-          <FaTwitter className="w-5 h-5" />
+        <a href="https://x.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300">
+          <FaXTwitter className="w-5 h-5" />
         </a>
         <a href="mailto:team.abcdwebsite@gmail.com" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-accent-red hover:scale-110 hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] transition-all duration-300">
           <FaEnvelope className="w-5 h-5" />

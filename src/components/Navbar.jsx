@@ -10,11 +10,10 @@ const SHOW_THEMES = false;
 
 const navItems = [
   { label: 'Home', href: '#home' },
+  { label: 'My Work', href: '#recent-work-videos' },
   { label: 'Technologies', href: '#technologies' },
-  { label: 'Services', href: '#services' },
-  ...(SHOW_THEMES ? [{ label: 'Themes', href: '#themes' }] : []),
-  ...(SHOW_PORTFOLIO ? [{ label: 'Portfolio', href: '#portfolio' }] : []),
   { label: 'Process', href: '#process' },
+  { label: 'Services', href: '#services' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -109,7 +108,7 @@ const Navbar = () => {
             <img 
               src={logoImg} 
               alt="abcdwebsite logo" 
-              className="w-9 h-9 object-contain rounded-full shadow-[0_0_15px_rgba(255,43,43,0.35)] group-hover:scale-105 transition-all duration-300"
+              className="w-[42px] h-[42px] object-contain rounded-full shadow-[0_0_15px_rgba(255,43,43,0.35)] group-hover:scale-105 transition-all duration-300"
             />
             <span className="text-xl font-black tracking-widest text-white uppercase font-sans">
               abcd<span className="text-accent-red group-hover:text-white transition-colors duration-300">website</span>
@@ -145,9 +144,9 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center">
             <a 
               href="tel:+919100920018" 
-              className="mr-6 flex items-center gap-2 text-xs font-black text-text-secondary hover:text-accent-red hover:scale-105 transition-all duration-300"
+              className="mr-6 flex items-center gap-2 text-[13.5px] font-black text-text-secondary hover:text-accent-red hover:scale-105 transition-all duration-300"
             >
-              <Phone className="w-3.5 h-3.5 text-accent-red animate-pulse" />
+              <Phone className="w-4 h-4 text-accent-red animate-pulse" />
               <span>+91 91009 20018</span>
             </a>
             <a

@@ -299,3 +299,22 @@ We also added **"My Work"** in the navigation header bar of [Navbar.jsx](file://
 ### Visual Verification Screenshot
 - **Reordered Homepage Load (Desktop)**: ![Homepage Load](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/homepage_onload_1785606526713.png)
 - **Scrolled Recent Work Flow**: ![Scrolled Recent Work](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/recent_work_section_1785606537527.png)
+
+## 11. Live Project Buttons & Bottom Layout Reordering (V3 Commit)
+
+We implemented new features and layout adjustments to enhance the portfolio utility and complete the reordering request:
+
+### 1. Recent Work Live Redirect Buttons
+* **Database Updates**: Added the `project_url` column to the `recent_works` Supabase table schema definition in [supabase_schema.sql](file:///d:/Web%20Dev/supabase_schema.sql).
+* **Fetching Logic**: Updated the fetching and mapping logic inside [RecentWorkVideos.jsx](file:///d:/Web%20Dev/src/components/RecentWorkVideos.jsx) to load `projectUrl` values from the Supabase database.
+* **Sleek Redirect Buttons**: Added a premium-styled **"View Live Website"** button inside the project cards. Designed with a flexible, auto-stretching description block so all buttons align perfectly at the bottom of the card grids.
+
+### 2. Final Bottom Layout Sequence Reordering
+Updated the section layout in [App.jsx](file:///d:/Web%20Dev/src/App.jsx) to render the following order at the bottom of the page:
+1. **Why Choose Us** (`WhyChooseUs`)
+2. **Contact Section** (`ContactSection`)
+3. **Client reviews / testimonials** (`ReviewsSection`)
+4. **Ready To Build Your Dream Website?** (`CTABanner`)
+
+### Visual Verification Screenshot
+- **Live Website Buttons in Action**: ![Recent Work Cards with Buttons](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/recent_work_buttons_1785666223644.png)

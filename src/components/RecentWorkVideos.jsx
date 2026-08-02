@@ -113,14 +113,14 @@ const VideoCard = ({ video, className, isActive }) => {
   };
 
   return (
-    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] bg-white/2 rounded-[32px] border border-white/5 p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-500 hover:border-accent-red/35 hover:-translate-y-1.5 shadow-[0_4px_30px_rgba(0,0,0,0.55)] hover:shadow-[0_0_40px_rgba(255,43,43,0.18)]"}>
+    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] bg-white/[0.02] backdrop-blur-md rounded-[32px] border border-white/[0.06] p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) hover:border-accent-red/40 hover:-translate-y-2 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_0_50px_rgba(255,43,43,0.2),_0_20px_60px_-15px_rgba(0,0,0,0.9)]"}>
       {/* Visual background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-accent-red/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-accent-red/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       {/* Video player frame */}
       <div 
         onClick={handlePlayToggle} 
-        className="w-full h-40 sm:h-72 rounded-2xl overflow-hidden bg-black relative border border-white/5 cursor-pointer shadow-inner z-10"
+        className="w-full h-40 sm:h-72 rounded-2xl overflow-hidden bg-black relative border border-white/[0.06] cursor-pointer shadow-inner z-10"
       >
         <video
           ref={videoRef}
@@ -128,6 +128,7 @@ const VideoCard = ({ video, className, isActive }) => {
           loop
           muted={isMuted}
           playsInline
+          preload="auto"
           className="w-full h-full object-cover transition-opacity duration-1000"
           style={{ opacity: showVideo ? 0.85 : 0 }}
         />
@@ -140,12 +141,12 @@ const VideoCard = ({ video, className, isActive }) => {
           <img 
             src={video.imageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop'} 
             alt={video.title} 
-            className="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="w-full h-full object-cover filter brightness-[0.7] group-hover:scale-105 transition-transform duration-1000 ease-out"
           />
         </div>
 
         {/* Video Player overlay shadow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
 
         {/* Play/Pause Button overlay */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -197,7 +198,7 @@ const VideoCard = ({ video, className, isActive }) => {
           href={video.projectUrl || 'https://abcdwebsite.com'}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full py-3.5 rounded-xl border border-accent-red/20 hover:border-accent-red bg-accent-red/5 hover:bg-accent-red/10 text-white font-black text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,43,43,0.15)] text-center cursor-pointer relative z-20"
+          className="w-full py-4 rounded-2xl border border-accent-red/20 hover:border-accent-red bg-accent-red/5 hover:bg-accent-red/15 text-white font-black text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(255,43,43,0.3)] active:scale-[0.98] cursor-pointer relative z-20 font-display"
         >
           View Live Website
         </a>

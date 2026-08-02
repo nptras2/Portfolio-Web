@@ -43,23 +43,53 @@ CREATE TABLE IF NOT EXISTS public.recent_works (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
--- Migration query if table already exists (run in SQL Editor):
--- ALTER TABLE public.recent_works ADD COLUMN IF NOT EXISTS project_url TEXT;
+-- Safe indexes for optimized sorting
+CREATE INDEX IF NOT EXISTS recent_works_created_at_idx ON public.recent_works (created_at DESC);
+CREATE INDEX IF NOT EXISTS recent_works_id_idx ON public.recent_works (id ASC);
 
 -- Enable RLS
 ALTER TABLE public.recent_works ENABLE ROW LEVEL SECURITY;
 
--- Allow anonymous select (so website visitors can view your portfolio videos)
+-- Drop existing policies if they exist to avoid duplication errors
+DROP POLICY IF EXISTS "Allow anon select from recent_works" ON public.recent_works;
+DROP POLICY IF EXISTS "Allow authenticated CRUD on recent_works" ON public.recent_works;
+DROP POLICY IF EXISTS "Allow authenticated insert on recent_works" ON public.recent_works;
+DROP POLICY IF EXISTS "Allow authenticated update on recent_works" ON public.recent_works;
+DROP POLICY IF EXISTS "Allow authenticated delete on recent_works" ON public.recent_works;
+
+-- Allow anonymous select (so website visitors can view your portfolio cards and videos)
 CREATE POLICY "Allow anon select from recent_works" 
 ON public.recent_works 
 FOR SELECT 
 TO anon 
 USING (true);
 
--- Allow authenticated users to perform all CRUD operations
+-- Allow authenticated users to perform all CRUD operations (safe database management)
 CREATE POLICY "Allow authenticated CRUD on recent_works" 
 ON public.recent_works 
 FOR ALL 
 TO authenticated 
 USING (true) 
 WITH CHECK (true);
+
+-- 3. Storage Bucket Documentation & Migration Guidelines
+--
+-- Go to your Supabase Console -> Storage -> Buckets.
+-- Create a new PUBLIC bucket named: recent_works
+--
+-- Inside the bucket, you can organize your assets using folders:
+--   recent_works/
+--     images/   -- Place preview card images here
+--     videos/   -- Place MP4 demo walkthrough videos here
+--
+-- Copy the Public URLs of the uploaded assets and insert them into the recent_works table:
+--
+-- Example SQL Insert:
+-- INSERT INTO public.recent_works (title, description, card_image_url, video_url, project_url)
+-- VALUES (
+--   'My Premium App',
+--   'Full description of the project detailing modern UI and performance optimization.',
+--   'https://[your-project-id].supabase.co/storage/v1/object/public/recent_works/images/project-cover.png',
+--   'https://[your-project-id].supabase.co/storage/v1/object/public/recent_works/videos/project-demo.mp4',
+--   'https://my-live-project.com'
+-- );

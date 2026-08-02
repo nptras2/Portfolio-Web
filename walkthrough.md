@@ -318,3 +318,25 @@ Updated the section layout in [App.jsx](file:///d:/Web%20Dev/src/App.jsx) to ren
 
 ### Visual Verification Screenshot
 - **Live Website Buttons in Action**: ![Recent Work Cards with Buttons](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/recent_work_buttons_1785666223644.png)
+
+## 12. Hero Section Copywriting Content Update (V4 Commit)
+
+We updated the copywriting inside the Hero section of [HeroSection.jsx](file:///d:/Web%20Dev/src/components/HeroSection.jsx) to make the branding and services clearer for visitors while keeping the UI, layout, responsiveness, and sizing locked and unchanged:
+
+### 1. Headline & Description Copy
+* **Small Tagline**: Updated to `PREMIUM WEBSITE DESIGN & DEVELOPMENT`.
+* **Main Heading**: Replaced with the optimized layout:
+  ```
+  WE BUILD
+  WEBSITES
+  THAT GROW
+  YOUR BUSINESS
+  ```
+  Both **WEBSITES** and **YOUR BUSINESS** feature the original pulsing red neon glow styling.
+* **Sub-heading & Description**: Updated to:
+  * *Sub-heading*: `"Professional websites for businesses, startups, brands, e-commerce stores, and personal portfolios."`
+  * *Description*: `"We design and develop modern, high-performance websites that help businesses build trust, attract customers, and grow online. Every website is fully responsive, SEO-friendly, and built for speed."`
+* **CTA Buttons**: Renamed to uppercase `VIEW PACKAGES` and `SEE OUR WORK`.
+
+### Visual Verification Screenshot
+- **Updated Hero Content (Desktop)**: ![Hero Copywriting Update](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/hero_section_load_1785672087495.png)

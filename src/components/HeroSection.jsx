@@ -183,17 +183,17 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute lg:right-6 lg:top-[48%] lg:-translate-y-1/2 left-1/2 lg:left-auto -translate-x-1/2 lg:translate-x-0 bottom-16 lg:bottom-auto z-30 flex lg:flex-col flex-row items-center gap-4 lg:gap-5 p-3 px-6 lg:px-3.5 rounded-2xl border border-accent-red/25 bg-[#0a0a0a]/65 backdrop-blur-xl shadow-[0_0_20px_rgba(255,43,43,0.15)] w-max max-w-[90%] justify-center divide-x lg:divide-x-0 lg:divide-y-0 divide-white/10">
-        <a href="https://wa.me/919100920018" target="_blank" rel="noopener noreferrer" className="p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#25D366] hover:scale-110 hover:shadow-[0_0_15px_rgba(37,211,102,0.2)] transition-all duration-300">
+      <div className="absolute lg:right-6 lg:top-[48%] lg:-translate-y-1/2 left-1/2 lg:left-auto -translate-x-1/2 lg:translate-x-0 bottom-16 lg:bottom-auto z-30 flex lg:flex-col flex-row items-center gap-3 lg:gap-4 p-2.5 px-4 lg:px-2.5 rounded-2xl border border-accent-red/25 bg-[#0a0a0a]/65 backdrop-blur-xl shadow-[0_0_20px_rgba(255,43,43,0.15)] w-max max-w-[90%] justify-center">
+        <a href="https://wa.me/919100920018" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#25D366] hover:scale-110 hover:shadow-[0_0_15px_rgba(37,211,102,0.2)] transition-all duration-300 flex items-center justify-center">
           <FaWhatsapp className="w-5 h-5" />
         </a>
-        <a href="https://instagram.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#E1306C] hover:scale-110 hover:shadow-[0_0_15px_rgba(225,48,108,0.2)] transition-all duration-300">
+        <a href="https://instagram.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-[#E1306C] hover:scale-110 hover:shadow-[0_0_15px_rgba(225,48,108,0.2)] transition-all duration-300 flex items-center justify-center">
           <FaInstagram className="w-5 h-5" />
         </a>
-        <a href="https://x.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300">
+        <a href="https://x.com/abcdwebsite" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300 flex items-center justify-center">
           <FaXTwitter className="w-5 h-5" />
         </a>
-        <a href="mailto:team.abcdwebsite@gmail.com" className="pl-4 lg:pl-0 p-2 px-3 lg:px-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-accent-red hover:scale-110 hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] transition-all duration-300">
+        <a href="mailto:team.abcdwebsite@gmail.com" className="p-2.5 rounded-xl hover:bg-accent-red/10 text-text-secondary hover:text-accent-red hover:scale-110 hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] transition-all duration-300 flex items-center justify-center">
           <FaEnvelope className="w-5 h-5" />
         </a>
       </div>

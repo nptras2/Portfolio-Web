@@ -98,23 +98,30 @@ const HeroSection = () => {
             variants={itemVariants}
             className="text-[9px] sm:text-xs font-black uppercase tracking-[0.25em] text-accent-red font-display block"
           >
-            WE DESIGN. WE CODE. WE DELIVER.
+            PREMIUM WEBSITE DESIGN & DEVELOPMENT
           </motion.span>
 
           {/* Huge bold headline with gradient highlight */}
           <motion.h1 
             variants={itemVariants}
-            className="text-2xl xs:text-[1.75rem] sm:text-5xl lg:text-[3.2rem] xl:text-[3.7rem] font-black font-display text-white leading-[1.05] tracking-tight uppercase"
+            className="text-2xl xs:text-[1.75rem] sm:text-5xl lg:text-[2.8rem] xl:text-[3.2rem] font-black font-display text-white leading-[1.05] tracking-tight uppercase"
           >
             WE BUILD <br />
             <span 
               className="text-[#FF2B2B] font-extrabold tracking-tight block mt-1 animate-pulse-slow"
               style={{ textShadow: '0 0 8px rgba(255,43,43,0.5)' }}
             >
-              DIGITAL EXPERIENCES
+              WEBSITES
             </span>
-            <span className="block text-xs xs:text-sm sm:text-xl lg:text-2xl text-white font-semibold mt-1 sm:mt-2.5 tracking-normal normal-case font-display">
-              That Inspire & Convert
+            THAT GROW <br />
+            <span 
+              className="text-[#FF2B2B] font-extrabold tracking-tight block mt-1 animate-pulse-slow"
+              style={{ textShadow: '0 0 8px rgba(255,43,43,0.5)' }}
+            >
+              YOUR BUSINESS
+            </span>
+            <span className="block text-xs xs:text-sm sm:text-base lg:text-lg text-white font-semibold mt-2.5 tracking-normal normal-case font-display max-w-sm sm:max-w-md">
+              Professional websites for businesses, startups, brands, e-commerce stores, and personal portfolios.
             </span>
           </motion.h1>
 
@@ -123,7 +130,7 @@ const HeroSection = () => {
             variants={itemVariants}
             className="text-text-secondary text-[10px] xs:text-xs sm:text-sm lg:text-base font-medium leading-relaxed max-w-[340px] xs:max-w-[400px] font-sans"
           >
-            Professional websites for your business with modern design, clean code and 3D experiences.
+            We design and develop modern, high-performance websites that help businesses build trust, attract customers, and grow online. Every website is fully responsive, SEO-friendly, and built for speed.
           </motion.p>
 
           {/* Button CTAs */}
@@ -135,14 +142,14 @@ const HeroSection = () => {
               onClick={() => scrollToSection('#services')}
               className="w-full sm:w-auto px-3 sm:px-6 py-3 rounded-full btn-primary text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,43,43,0.3)]"
             >
-              View Packages
+              VIEW PACKAGES
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
-              onClick={() => scrollToSection(SHOW_PORTFOLIO ? '#portfolio' : (SHOW_THEMES ? '#themes' : '#services'))}
+              onClick={() => scrollToSection(SHOW_PORTFOLIO ? '#portfolio' : (SHOW_THEMES ? '#themes' : '#recent-work-videos'))}
               className="w-full sm:w-auto px-3 sm:px-6 py-3 rounded-full btn-secondary text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest flex items-center justify-center gap-1.5 sm:gap-2.5 cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
             >
-              See Our Work
+              SEE OUR WORK
               <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-red/20 transition-colors">
                 <Play className="w-2.5 h-2.5 fill-white text-white translate-x-0.5" />
               </div>

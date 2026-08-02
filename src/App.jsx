@@ -112,14 +112,14 @@ function App() {
         {/* 7. STATISTICS / WHY CHOOSE US */}
         <WhyChooseUs />
 
-        {/* 8. CONVERSION-FOCUSED CTA BANNER */}
-        <CTABanner />
-
-        {/* 9. FLOATING FORM CONTACT SECTION */}
+        {/* 8. FLOATING FORM CONTACT SECTION */}
         <ContactSection />
 
-        {/* 10. REVIEWS SECTION PLACEHOLDER */}
+        {/* 9. REVIEWS SECTION PLACEHOLDER */}
         <ReviewsSection />
+
+        {/* 10. CONVERSION-FOCUSED CTA BANNER */}
+        <CTABanner />
         
       </main>
 

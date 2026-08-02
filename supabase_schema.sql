@@ -39,8 +39,12 @@ CREATE TABLE IF NOT EXISTS public.recent_works (
     description TEXT NOT NULL,
     video_url TEXT NOT NULL,          -- Supabase Storage video public link
     card_image_url TEXT,              -- Fallback preview card image link
+    project_url TEXT,                 -- URL to redirect user to live website
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+
+-- Migration query if table already exists (run in SQL Editor):
+-- ALTER TABLE public.recent_works ADD COLUMN IF NOT EXISTS project_url TEXT;
 
 -- Enable RLS
 ALTER TABLE public.recent_works ENABLE ROW LEVEL SECURITY;

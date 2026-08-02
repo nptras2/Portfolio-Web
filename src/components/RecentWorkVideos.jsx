@@ -14,6 +14,7 @@ const videoData = [
     desc: 'Demonstration of smooth real-time 3D watch configuration, leather strap selection, and high-performance WebGL asset loading.',
     videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-futuristic-hud-design-screens-with-digital-data-31952-large.mp4',
     category: '3D UI WebGL',
+    projectUrl: 'https://abcdwebsite.com',
   },
   {
     id: 2,
@@ -21,6 +22,7 @@ const videoData = [
     desc: 'Interactive demonstration showing Ethereum wallet connection, gas fee calculation modules, and visual custom minting animations.',
     videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-monitors-with-flowing-digital-code-background-34283-large.mp4',
     category: 'Web3 / Cryptocurrency',
+    projectUrl: 'https://abcdwebsite.com',
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const videoData = [
     desc: 'High-speed scrolling demo showcasing real-time data charts rendering at 60 FPS, tabular logs sorting, and custom workspace exports.',
     videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-cyber-punk-hologram-effect-with-lines-and-numbers-34273-large.mp4',
     category: 'Dynamic Dashboard',
+    projectUrl: 'https://abcdwebsite.com',
   }
 ];
 
@@ -119,13 +122,24 @@ const VideoCard = ({ video, className, isActive }) => {
       </div>
 
       {/* Description Content */}
-      <div className="text-left mt-6 z-10">
-        <h3 className="text-lg sm:text-xl font-black uppercase text-white tracking-wide font-display group-hover:text-accent-red transition-colors duration-300">
-          {video.title}
-        </h3>
-        <p className="text-text-secondary text-xs sm:text-sm mt-3 leading-relaxed font-sans">
-          {video.desc}
-        </p>
+      <div className="text-left mt-6 z-10 flex flex-col flex-grow justify-between">
+        <div>
+          <h3 className="text-lg sm:text-xl font-black uppercase text-white tracking-wide font-display group-hover:text-accent-red transition-colors duration-300">
+            {video.title}
+          </h3>
+          <p className="text-text-secondary text-xs sm:text-sm mt-3 leading-relaxed font-sans mb-5">
+            {video.desc}
+          </p>
+        </div>
+
+        <a
+          href={video.projectUrl || 'https://abcdwebsite.com'}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full py-3.5 rounded-xl border border-accent-red/20 hover:border-accent-red bg-accent-red/5 hover:bg-accent-red/10 text-white font-black text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,43,43,0.15)] text-center cursor-pointer relative z-20"
+        >
+          View Live Website
+        </a>
       </div>
     </div>
   );
@@ -158,7 +172,8 @@ const RecentWorkVideos = () => {
             title: item.title,
             desc: item.description,
             videoSrc: item.video_url,
-            category: item.card_image_url || 'Featured Work'
+            category: item.card_image_url || 'Featured Work',
+            projectUrl: item.project_url
           }));
           setWorks(mappedData);
         } else {

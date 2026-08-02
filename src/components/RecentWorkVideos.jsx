@@ -13,6 +13,7 @@ const videoData = [
     title: '3D Watch Customizer Walkthrough',
     desc: 'Demonstration of smooth real-time 3D watch configuration, leather strap selection, and high-performance WebGL asset loading.',
     videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-futuristic-hud-design-screens-with-digital-data-31952-large.mp4',
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
     category: '3D UI WebGL',
     projectUrl: 'https://abcdwebsite.com',
   },
@@ -21,6 +22,7 @@ const videoData = [
     title: 'NFT Minting Portal Case Study',
     desc: 'Interactive demonstration showing Ethereum wallet connection, gas fee calculation modules, and visual custom minting animations.',
     videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-monitors-with-flowing-digital-code-background-34283-large.mp4',
+    imageUrl: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800&auto=format&fit=crop',
     category: 'Web3 / Cryptocurrency',
     projectUrl: 'https://abcdwebsite.com',
   },
@@ -29,6 +31,7 @@ const videoData = [
     title: 'SaaS Analytics Dashboard UI',
     desc: 'High-speed scrolling demo showcasing real-time data charts rendering at 60 FPS, tabular logs sorting, and custom workspace exports.',
     videoSrc: 'https://assets.mixkit.co/videos/preview/mixkit-cyber-punk-hologram-effect-with-lines-and-numbers-34273-large.mp4',
+    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop',
     category: 'Dynamic Dashboard',
     projectUrl: 'https://abcdwebsite.com',
   }
@@ -38,13 +41,58 @@ const VideoCard = ({ video, className, isActive }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    // 1-second delay to show card image first, then transition to video
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // IntersectionObserver to pause/play based on viewport visibility
+  useEffect(() => {
+    let observer;
+    const currentVideo = videoRef.current;
+
+    if (currentVideo) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (showVideo) {
+                currentVideo.play()
+                  .then(() => setIsPlaying(true))
+                  .catch((err) => console.log('Autoplay play error:', err));
+              }
+            } else {
+              currentVideo.pause();
+              setIsPlaying(false);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      observer.observe(currentVideo);
+    }
+
+    return () => {
+      if (observer && currentVideo) {
+        observer.unobserve(currentVideo);
+      }
+    };
+  }, [showVideo]);
 
   const handlePlayToggle = () => {
     if (!videoRef.current) return;
     if (isPlaying) {
       videoRef.current.pause();
     } else {
-      videoRef.current.play().catch((err) => console.log('Video play interrupted:', err));
+      videoRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.log('Video play interrupted:', err));
     }
     setIsPlaying(!isPlaying);
   };
@@ -65,9 +113,9 @@ const VideoCard = ({ video, className, isActive }) => {
   };
 
   return (
-    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] bg-white/2 rounded-[32px] border border-white/5 p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-300 hover:border-accent-red/20 shadow-2xl"}>
+    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] bg-white/2 rounded-[32px] border border-white/5 p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-500 hover:border-accent-red/35 hover:-translate-y-1.5 shadow-[0_4px_30px_rgba(0,0,0,0.55)] hover:shadow-[0_0_40px_rgba(255,43,43,0.18)]"}>
       {/* Visual background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-accent-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-accent-red/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Video player frame */}
       <div 
@@ -80,8 +128,21 @@ const VideoCard = ({ video, className, isActive }) => {
           loop
           muted={isMuted}
           playsInline
-          className="w-full h-full object-cover opacity-75 group-hover:opacity-95 transition-opacity duration-300"
+          className="w-full h-full object-cover transition-opacity duration-1000"
+          style={{ opacity: showVideo ? 0.85 : 0 }}
         />
+
+        {/* Fading Preview Image */}
+        <div 
+          className="absolute inset-0 transition-opacity duration-1000 pointer-events-none"
+          style={{ opacity: showVideo ? 0 : 1 }}
+        >
+          <img 
+            src={video.imageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop'} 
+            alt={video.title} 
+            className="w-full h-full object-cover filter brightness-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+        </div>
 
         {/* Video Player overlay shadow */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -172,7 +233,8 @@ const RecentWorkVideos = () => {
             title: item.title,
             desc: item.description,
             videoSrc: item.video_url,
-            category: item.card_image_url || 'Featured Work',
+            category: item.card_image_url ? 'Featured Work' : 'Featured Work',
+            imageUrl: item.card_image_url || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
             projectUrl: item.project_url
           }));
           setWorks(mappedData);

@@ -121,17 +121,9 @@ const HeroSection = () => {
               YOUR BUSINESS
             </span>
             <span className="block text-xs xs:text-sm sm:text-base lg:text-lg text-white font-semibold mt-2.5 tracking-normal normal-case font-display max-w-sm sm:max-w-md">
-              Professional websites for businesses, startups, brands, e-commerce stores, and personal portfolios.
+              Premium websites for businesses, brands,<br className="hidden sm:block" /> startups, and e-commerce stores.
             </span>
           </motion.h1>
-
-          {/* Paragraph copy */}
-          <motion.p 
-            variants={itemVariants}
-            className="text-text-secondary text-[10px] xs:text-xs sm:text-sm lg:text-base font-medium leading-relaxed max-w-[340px] xs:max-w-[400px] font-sans"
-          >
-            We design and develop modern, high-performance websites that help businesses build trust, attract customers, and grow online. Every website is fully responsive, SEO-friendly, and built for speed.
-          </motion.p>
 
           {/* Button CTAs */}
           <motion.div 

@@ -358,3 +358,18 @@ We implemented copywriting simplification and visual portfolio card behavior upd
 ### Visual Verification Screenshot
 - **Minimal Hero Layout**: ![Minimal Hero Layout](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/hero_section_load_1785673914321.png)
 - **Autoplay Fade-in Videos**: ![Autoplay Video Cards](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/recent_work_videos_playing_1785674054354.png)
+
+## 14. Tab Bar Favicon Logo, Moving Tab Text & Social Icon Alignment (V6 Commit)
+
+We implemented browser tab customizations and layout alignment adjustments in this update:
+
+### 1. Tab Bar Favicon & Moving Text
+* **Favicon Logo**: Copied the website logo `logo.png` from the source assets folder into the `public/` directory and updated the favicon resource path inside [index.html](file:///d:/Web%20Dev/index.html) to link directly to it.
+* **Moving Tab Text (Marquee)**: Programmed an automatic scrolling title script inside [index.html](file:///d:/Web%20Dev/index.html) to rotate the browser page title text smoothly:
+  `abcdwebsite | Premium Website Design & Development | `
+
+### 2. Social Media Sidebar Icon Alignment
+* **Vertical Column Alignment**: Standardized the padding and margins of all link elements inside the floating social sidebar block of [HeroSection.jsx](file:///d:/Web%20Dev/src/components/HeroSection.jsx). Removed conflicting CSS properties to align all social icons (WhatsApp, Instagram, X, Mail) perfectly along the same vertical line.
+
+### Visual Verification Screenshot
+- **Aligned Sidebar Social Icons**: ![Social Icons Alignment](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/social_media_bar_1785675828602.png)

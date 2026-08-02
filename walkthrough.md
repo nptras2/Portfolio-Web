@@ -340,3 +340,21 @@ We updated the copywriting inside the Hero section of [HeroSection.jsx](file:///
 
 ### Visual Verification Screenshot
 - **Updated Hero Content (Desktop)**: ![Hero Copywriting Update](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/hero_section_load_1785672087495.png)
+
+## 13. Hero Copy Minimization & Video Autoplay Fading Preview (V5 Commit)
+
+We implemented copywriting simplification and visual portfolio card behavior updates in this batch:
+
+### 1. Minimal Hero Copywriting
+* **Removed Descriptions**: Completely removed the long paragraphs of descriptions from [HeroSection.jsx](file:///d:/Web%20Dev/src/components/HeroSection.jsx) to make the on-load viewport clean, clean of heavy text, and modern.
+* **Tagline Subtext**: Replaced subtext with a concise 2-line summary: 
+  `Premium websites for businesses, brands, startups, and e-commerce stores.`
+
+### 2. Recent Work Video Card Visuals & Fading Autoplay Preview
+* **Glow & Shadow Effects**: Enhanced the cards in [RecentWorkVideos.jsx](file:///d:/Web%20Dev/src/components/RecentWorkVideos.jsx) to feature a red glowing shadow and gradient on hover (`shadow-[0_4px_30px_rgba(0,0,0,0.55)] hover:shadow-[0_0_40px_rgba(255,43,43,0.18)] hover:border-accent-red/35 hover:-translate-y-1.5`).
+* **Fading Autoplay Preview**: Configured video elements to load and display their placeholder covers (`imageUrl` from Unsplash or Supabase Storage) for exactly **1 second** on mount. After 1 second, it fades out the image cover and autoplays the looping, muted video with a smooth 1000ms transition.
+* **Intersection Observer**: Configured an `IntersectionObserver` to automatically pause videos when they leave the viewport and resume them when they enter view, maximizing device rendering performance.
+
+### Visual Verification Screenshot
+- **Minimal Hero Layout**: ![Minimal Hero Layout](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/hero_section_load_1785673914321.png)
+- **Autoplay Fade-in Videos**: ![Autoplay Video Cards](/C:/Users/nptra/.gemini/antigravity-ide/brain/437a02db-18dc-4a1d-baa7-9d64ff6874c5/recent_work_videos_playing_1785674054354.png)

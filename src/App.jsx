@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import Lenis from 'lenis';
 
 // Global & Layout components
+import PageLoader from './components/PageLoader';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import FloatingControls from './components/FloatingControls';
@@ -82,6 +83,7 @@ function App() {
   return (
     <>
       {/* Global Interactive HUD Elements */}
+      <PageLoader />
       <CustomCursor />
       <Navbar />
       <FloatingControls />

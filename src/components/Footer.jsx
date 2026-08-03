@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaDiscord, FaTwitter, FaDribbble, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Mail, Phone, MapPin, ArrowRight, ChevronDown } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logoImg from '../assets/logo.png';
 
 // Toggle to show/hide the Portfolio link
@@ -54,11 +55,19 @@ const Footer = () => {
     { icon: <FaLinkedin className="w-5 h-5" />, href: 'https://linkedin.com', label: 'LinkedIn' },
   ];
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const scrollToSection = (e, id) => {
     e.preventDefault();
-    const target = document.querySelector(id);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname === '/') {
+      const target = document.querySelector(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', id);
+      }
+    } else {
+      navigate('/' + id);
     }
   };
 
@@ -317,9 +326,9 @@ const Footer = () => {
           &copy; {currentYear} <span className="text-white font-semibold">abcdwebsite</span>. Built with React + Three.js
         </div>
         <div className="flex gap-4 text-[10px] md:text-xs">
-          <a href="#" className="hover:text-accent-red transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-accent-red transition-colors">Terms of Service</a>
-          <a href="#" className="hover:text-accent-red transition-colors">Sitemap</a>
+          <Link to="/privacy" className="hover:text-accent-red transition-colors">Privacy Policy</Link>
+          <Link to="/terms" className="hover:text-accent-red transition-colors">Terms of Service</Link>
+          <Link to="/disclaimer" className="hover:text-accent-red transition-colors">Disclaimer</Link>
         </div>
       </div>
     </footer>

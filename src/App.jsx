@@ -1,5 +1,6 @@
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useEffect } from 'react';
 import Lenis from 'lenis';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // Global & Layout components
 import PageLoader from './components/PageLoader';
@@ -8,39 +9,36 @@ import Navbar from './components/Navbar';
 import FloatingControls from './components/FloatingControls';
 import Footer from './components/Footer';
 
-// Synchronously loaded standard sections
-import HeroSection from './components/HeroSection';
-import Technologies from './components/Technologies';
-import ServicesSection from './components/ServicesSection';
-import ProcessSection from './components/ProcessSection';
-import WhyChooseUs from './components/WhyChooseUs';
-import ReviewsSection from './components/ReviewsSection';
-import AboutSection from './components/AboutSection';
-import CTABanner from './components/CTABanner';
-import ContactSection from './components/ContactSection';
+// Pages
+import Home from './pages/Home';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import Disclaimer from './pages/Disclaimer';
 
-// Lazy loaded heavy sections for optimal bundle performance
-const ThemesShowcase = lazy(() => import('./components/ThemesShowcase'));
-const PortfolioSection = lazy(() => import('./components/PortfolioSection'));
-const RecentWorkVideos = lazy(() => import('./components/RecentWorkVideos'));
+// Custom router utility to manage scroll behavior on page changes and hashes
+const ScrollManager = () => {
+  const { pathname, hash } = useLocation();
 
-// Section loading placeholder fallback component
-const SectionLoader = ({ name }) => (
-  <div className="w-full min-h-[400px] flex flex-col items-center justify-center gap-3 relative py-20 bg-bg-primary">
-    <div className="w-10 h-10 rounded-full border-2 border-accent-red/10 border-t-accent-red animate-spin" />
-    <span className="text-[9px] uppercase font-bold tracking-widest text-text-secondary animate-pulse">
-      Loading {name} Segment...
-    </span>
-  </div>
-);
+  useEffect(() => {
+    if (!hash) {
+      // Navigated to a new page (no hash target) -> scroll instantly to top
+      window.scrollTo(0, 0);
+    } else {
+      // Navigated with a hash target -> scroll smoothly to the element
+      const target = document.querySelector(hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }, 150); // Small delay to let components render
+      }
+    }
+  }, [pathname, hash]);
 
-// Toggle to show/hide the Portfolio section
-const SHOW_PORTFOLIO = false;
-// Toggle to show/hide the Themes section
-const SHOW_THEMES = false;
+  return null;
+};
 
 function App() {
-  // Initialize Lenis smooth scroll inertia
+  // Initialize Lenis smooth scroll globally
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -59,75 +57,34 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    // Refresh scroll positions on links
-    const handleAnchorScroll = (e) => {
-      const href = e.currentTarget.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          lenis.scrollTo(target);
-        }
-      }
-    };
-
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach((link) => link.addEventListener('click', handleAnchorScroll));
-
     return () => {
       lenis.destroy();
-      links.forEach((link) => link.removeEventListener('click', handleAnchorScroll));
     };
   }, []);
 
   return (
-    <>
+    <Router>
+      <ScrollManager />
+      
       {/* Global Interactive HUD Elements */}
       <PageLoader />
       <CustomCursor />
       <Navbar />
       <FloatingControls />
 
-      {/* Main Structural Layout (Sequence strictly matches user instructions) */}
+      {/* Main Routing Container */}
       <main className="bg-bg-primary text-white overflow-hidden min-h-screen">
-        
-        {/* 1. HERO SECTION */}
-        <HeroSection />
-
-        {/* 2. RECENT WORK VIDEOS SECTION (Lazy Loaded - My Work) */}
-        <Suspense fallback={<SectionLoader name="Recent Walkthroughs" />}>
-          <RecentWorkVideos />
-        </Suspense>
-
-        {/* 3. LOGO WALL TECHNOLOGIES */}
-        <Technologies />
-
-        {/* 4. METHODOLOGY PROCESS TIMELINE */}
-        <ProcessSection />
-
-        {/* 5. SERVICES / PRICING SECTION */}
-        <ServicesSection />
-
-        {/* 6. ABOUT AGENCY PORTRAIT */}
-        <AboutSection />
-
-        {/* 7. STATISTICS / WHY CHOOSE US */}
-        <WhyChooseUs />
-
-        {/* 8. FLOATING FORM CONTACT SECTION */}
-        <ContactSection />
-
-        {/* 9. REVIEWS SECTION PLACEHOLDER */}
-        <ReviewsSection />
-
-        {/* 10. CONVERSION-FOCUSED CTA BANNER */}
-        <CTABanner />
-        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+        </Routes>
       </main>
 
-      {/* Footer Matrix */}
+      {/* Shared Footer */}
       <Footer />
-    </>
+    </Router>
   );
 }
 

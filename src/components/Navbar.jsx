@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, Phone } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 
+import { useNavigate, useLocation } from 'react-router-dom';
+
 // Toggle to show/hide the Portfolio section and nav item
 const SHOW_PORTFOLIO = false;
 // Toggle to show/hide the Themes section and nav item
@@ -22,6 +24,9 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Cache element references to prevent DOM query overhead on every scroll frame
@@ -31,7 +36,12 @@ const Navbar = () => {
       // 1. Scrolled state styling
       setIsScrolled(window.scrollY > 20);
 
-      // 2. Scroll spy calculation
+      // 2. Scroll spy calculation (only active on home page)
+      if (location.pathname !== '/') {
+        setActiveSection('');
+        return;
+      }
+
       let currentSection = 'home';
       let minDistance = Infinity;
 
@@ -73,15 +83,20 @@ const Navbar = () => {
       clearInterval(intervalId);
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [location.pathname]);
 
   const scrollToSection = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', href);
+
+    if (location.pathname === '/') {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', href);
+      }
+    } else {
+      navigate('/' + href);
     }
   };
 

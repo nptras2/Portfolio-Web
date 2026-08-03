@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Building2, ArrowRight, User } from 'lucide-react';
+import { Star, Building2, ArrowRight, ArrowLeft, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { supabase } from '../supabaseClient';
+
+// Import Swiper styles
+import 'swiper/css';
 
 const placeholders = [
   {
@@ -30,6 +34,7 @@ const ReviewsSection = () => {
   const [reviews, setReviews] = useState([]);
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [swiperRef, setSwiperRef] = useState(null);
 
   const scrollToContact = () => {
     const el = document.querySelector('#contact');
@@ -87,67 +92,99 @@ const ReviewsSection = () => {
             <p className="text-text-secondary text-sm md:text-base leading-relaxed font-sans">
               We do not believe in fake testimonials. Instead, we let our engineering speak for itself. Partner with us, and your business success story will be featured here.
             </p>
-            <button
-              onClick={scrollToContact}
-              className="px-7 py-3.5 rounded-full border border-accent-red/20 bg-accent-red/5 hover:bg-accent-red hover:text-white hover:shadow-[0_0_20px_rgba(255,43,43,0.35)] text-accent-red font-black text-xs uppercase tracking-widest flex items-center gap-2.5 transition-all duration-300 group cursor-pointer"
-            >
-              Partner With Us
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div className="flex flex-wrap items-center gap-4 mt-2">
+              <button
+                onClick={scrollToContact}
+                className="px-7 py-3.5 rounded-full border border-accent-red/20 bg-accent-red/5 hover:bg-accent-red hover:text-white hover:shadow-[0_0_20px_rgba(255,43,43,0.35)] text-accent-red font-black text-xs uppercase tracking-widest flex items-center gap-2.5 transition-all duration-300 group cursor-pointer"
+              >
+                Partner With Us
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              {/* Custom Slider Navigation arrows (Desktop only) */}
+              <div className="hidden md:flex items-center gap-2.5">
+                <button 
+                  onClick={() => swiperRef?.slidePrev()}
+                  className="w-11 h-11 rounded-full border border-white/10 hover:border-accent-red hover:text-white flex items-center justify-center text-text-secondary bg-white/2 hover:bg-accent-red/5 hover:shadow-[0_0_15px_rgba(255,43,43,0.25)] transition-all cursor-pointer active:scale-95"
+                  aria-label="Previous testimonial"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                </button>
+                <button 
+                  onClick={() => swiperRef?.slideNext()}
+                  className="w-11 h-11 rounded-full border border-white/10 hover:border-accent-red hover:text-white flex items-center justify-center text-text-secondary bg-white/2 hover:bg-accent-red/5 hover:shadow-[0_0_15px_rgba(255,43,43,0.25)] transition-all cursor-pointer active:scale-95"
+                  aria-label="Next testimonial"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Desktop View: Testimonial Cards */}
-          <div className="hidden md:grid md:grid-cols-2 gap-8 lg:col-span-2 items-stretch">
-            {reviews.map((review, index) => (
-              <motion.div
-                key={review.id || index}
-                className="glass-card p-8 sm:p-10 rounded-[32px] text-left border border-white/5 flex flex-col justify-between group hover:border-accent-red/35"
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div>
-                  {/* Stars */}
-                  <div className="flex items-center gap-1.5 mb-6">
-                    {[...Array(review.rating || 5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-accent-red fill-accent-red/10 group-hover:fill-accent-red transition-all duration-300" />
-                    ))}
-                  </div>
-
-                  {/* Quote */}
-                  <p className="text-white font-medium text-sm sm:text-base leading-relaxed italic mb-8 font-sans">
-                    "{review.quote}"
-                  </p>
-                </div>
-
-                {/* Footer details */}
-                <div className="flex items-center justify-between pt-5 border-t border-white/5 text-xs">
-                  <div className="flex items-center gap-3">
-                    {review.avatar_url ? (
-                      <div className="w-9 h-9 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center bg-white/5 shrink-0">
-                        <img src={review.avatar_url} alt={review.name || review.company} className="w-full h-full object-cover" />
-                      </div>
-                    ) : (
-                      <div className="w-9 h-9 rounded-xl bg-accent-red/5 border border-accent-red/20 flex items-center justify-center text-accent-red font-bold shrink-0">
-                        {review.name ? <User className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
-                      </div>
-                    )}
+          {/* Desktop View: Testimonial Cards Carousel */}
+          <div className="hidden md:block lg:col-span-2 w-full relative z-10">
+            <Swiper
+              onSwiper={setSwiperRef}
+              spaceBetween={24}
+              slidesPerView={1.5}
+              breakpoints={{
+                768: { slidesPerView: 1.5, spaceBetween: 24 },
+                1024: { slidesPerView: 2, spaceBetween: 24 }
+              }}
+              className="swiper-container"
+            >
+              {reviews.map((review, index) => (
+                <SwiperSlide key={review.id || index} className="h-auto flex">
+                  <motion.div
+                    className="glass-card p-8 sm:p-10 rounded-[32px] text-left border border-white/5 flex flex-col justify-between w-full h-full min-h-[320px] group hover:border-accent-red/35"
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
                     <div>
-                      <span className="text-white font-extrabold font-display block text-sm">
-                        {review.name || review.company}
-                      </span>
-                      <span className="text-text-secondary text-[10px] font-black uppercase tracking-wider font-sans">
-                        {review.name ? [review.title, review.company].filter(Boolean).join(', ') : review.title}
-                      </span>
+                      {/* Stars */}
+                      <div className="flex items-center gap-1.5 mb-6">
+                        {[...Array(review.rating || 5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 text-accent-red fill-accent-red/10 group-hover:fill-accent-red transition-all duration-300" />
+                        ))}
+                      </div>
+
+                      {/* Quote */}
+                      <p className="text-white font-medium text-sm sm:text-base leading-relaxed italic mb-8 font-sans">
+                        "{review.quote}"
+                      </p>
                     </div>
-                  </div>
-                  {review.date && (
-                    <span className="text-accent-red/90 font-mono font-black uppercase tracking-widest text-[10px]">{review.date}</span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+
+                    {/* Footer details */}
+                    <div className="flex items-center justify-between pt-5 border-t border-white/5 text-xs mt-auto">
+                      <div className="flex items-center gap-3">
+                        {review.avatar_url ? (
+                          <div className="w-9 h-9 rounded-xl overflow-hidden border border-white/10 flex items-center justify-center bg-white/5 shrink-0">
+                            <img src={review.avatar_url} alt={review.name || review.company} className="w-full h-full object-cover" />
+                          </div>
+                        ) : (
+                          <div className="w-9 h-9 rounded-xl bg-accent-red/5 border border-accent-red/20 flex items-center justify-center text-accent-red font-bold shrink-0">
+                            {review.name ? <User className="w-4 h-4" /> : <Building2 className="w-4 h-4" />}
+                          </div>
+                        )}
+                        <div>
+                          <span className="text-white font-extrabold font-display block text-sm">
+                            {review.name || review.company}
+                          </span>
+                          <span className="text-text-secondary text-[10px] font-black uppercase tracking-wider font-sans">
+                            {review.name ? [review.title, review.company].filter(Boolean).join(', ') : review.title}
+                          </span>
+                        </div>
+                      </div>
+                      {review.date && (
+                        <span className="text-accent-red/90 font-mono font-black uppercase tracking-widest text-[10px]">{review.date}</span>
+                      )}
+                    </div>
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
           {/* Mobile View: Single card carousel */}

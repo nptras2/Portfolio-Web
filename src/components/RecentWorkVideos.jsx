@@ -49,13 +49,14 @@ const VideoCard = ({ video, className, isActive }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [timerPassed, setTimerPassed] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    // 3-second delay to show card image first, then transition to video
+    // 2-second delay to show card image first, then transition to video
     const timer = setTimeout(() => {
-      setShowVideo(true);
-    }, 3000);
+      setTimerPassed(true);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -70,7 +71,7 @@ const VideoCard = ({ video, className, isActive }) => {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              if (showVideo) {
+              if (timerPassed) {
                 currentVideo.play()
                   .then(() => setIsPlaying(true))
                   .catch((err) => console.log('Autoplay play error:', err));
@@ -91,7 +92,7 @@ const VideoCard = ({ video, className, isActive }) => {
         observer.unobserve(currentVideo);
       }
     };
-  }, [showVideo]);
+  }, [timerPassed]);
 
   const handlePlayToggle = () => {
     if (!videoRef.current) return;
@@ -121,14 +122,14 @@ const VideoCard = ({ video, className, isActive }) => {
   };
 
   return (
-    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] h-auto md:h-[540px] bg-white/[0.02] backdrop-blur-md rounded-[32px] border border-white/[0.06] p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) hover:border-accent-red/40 hover:-translate-y-2 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_0_50px_rgba(255,43,43,0.2),_0_20px_60px_-15px_rgba(0,0,0,0.9)]"}>
+    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] h-auto md:h-[560px] bg-white/[0.02] backdrop-blur-md rounded-[32px] border border-white/[0.06] p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) hover:border-accent-red/40 hover:-translate-y-2 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_0_50px_rgba(255,43,43,0.2),_0_20px_60px_-15px_rgba(0,0,0,0.9)]"}>
       {/* Visual background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-accent-red/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       {/* Video player frame */}
       <div 
         onClick={handlePlayToggle} 
-        className="w-full h-40 sm:h-72 rounded-2xl overflow-hidden bg-black relative border border-white/[0.06] cursor-pointer shadow-inner z-10"
+        className="w-full h-40 sm:h-72 shrink-0 rounded-2xl overflow-hidden bg-black relative border border-white/[0.06] cursor-pointer shadow-inner z-10"
       >
         <video
           ref={videoRef}
@@ -137,6 +138,7 @@ const VideoCard = ({ video, className, isActive }) => {
           muted={isMuted}
           playsInline
           preload="auto"
+          onPlaying={() => setShowVideo(true)}
           className="w-full h-full object-cover transition-opacity duration-1000"
           style={{ opacity: showVideo ? 0.85 : 0 }}
         />
@@ -192,14 +194,16 @@ const VideoCard = ({ video, className, isActive }) => {
       </div>
 
       {/* Description Content */}
-      <div className="text-left mt-6 z-10 flex flex-col flex-grow justify-between">
-        <div>
-          <h3 className="text-lg sm:text-xl font-black uppercase text-white tracking-wide font-display group-hover:text-accent-red transition-colors duration-300">
+      <div className="text-left mt-6 z-10 flex flex-col flex-grow justify-between overflow-hidden">
+        <div className="flex flex-col flex-grow justify-start">
+          <h3 className="text-lg sm:text-xl font-black uppercase text-white tracking-wide font-display group-hover:text-accent-red transition-colors duration-300 shrink-0">
             {video.title}
           </h3>
-          <p className={`text-text-secondary mt-3 font-sans mb-5 ${getDescFontSize(video.desc)}`}>
-            {video.desc}
-          </p>
+          <div className="overflow-y-auto max-h-[85px] pr-1.5 mt-3 mb-5 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+            <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-sans">
+              {video.desc}
+            </p>
+          </div>
         </div>
 
         <a

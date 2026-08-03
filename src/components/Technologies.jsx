@@ -61,16 +61,7 @@ const Technologies = () => {
         <div className="absolute top-0 right-0 bottom-0 w-24 sm:w-44 bg-gradient-to-l from-bg-secondary via-bg-secondary/70 to-transparent z-20 pointer-events-none" />
 
         {/* Scrolling wrapper */}
-        <motion.div
-          className="flex gap-8 pr-8 whitespace-nowrap"
-          animate={{ x: [0, -1984] }} // Length adjustments based on card dimensions (220 width + 32 gap = 252 width per card. 252 * 8 = 2016px)
-          transition={{
-            repeat: Infinity,
-            repeatType: 'loop',
-            duration: 38,
-            ease: 'linear',
-          }}
-        >
+        <div className="flex animate-marquee gap-8 pr-8 whitespace-nowrap">
           {marqueeData.map((tech, index) => (
             <div
               key={index}
@@ -90,7 +81,7 @@ const Technologies = () => {
               </span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

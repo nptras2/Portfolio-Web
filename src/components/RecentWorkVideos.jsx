@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Play, Pause, Volume2, VolumeX, Maximize } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Maximize, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '../supabaseClient';
 
@@ -37,6 +37,14 @@ const videoData = [
   }
 ];
 
+const getDescFontSize = (text) => {
+  if (!text) return 'text-xs sm:text-sm';
+  const len = text.length;
+  if (len > 180) return 'text-[10px] sm:text-xs leading-normal';
+  if (len > 120) return 'text-[11px] sm:text-[13px] leading-relaxed';
+  return 'text-xs sm:text-sm leading-relaxed';
+};
+
 const VideoCard = ({ video, className, isActive }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -44,10 +52,10 @@ const VideoCard = ({ video, className, isActive }) => {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    // 1-second delay to show card image first, then transition to video
+    // 3-second delay to show card image first, then transition to video
     const timer = setTimeout(() => {
       setShowVideo(true);
-    }, 1000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -113,7 +121,7 @@ const VideoCard = ({ video, className, isActive }) => {
   };
 
   return (
-    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] bg-white/[0.02] backdrop-blur-md rounded-[32px] border border-white/[0.06] p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) hover:border-accent-red/40 hover:-translate-y-2 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_0_50px_rgba(255,43,43,0.2),_0_20px_60px_-15px_rgba(0,0,0,0.9)]"}>
+    <div className={className || "w-[300px] sm:w-[470px] lg:w-[520px] h-auto md:h-[540px] bg-white/[0.02] backdrop-blur-md rounded-[32px] border border-white/[0.06] p-6 flex flex-col justify-between group relative overflow-hidden transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) hover:border-accent-red/40 hover:-translate-y-2 shadow-[0_15px_50px_-15px_rgba(0,0,0,0.8)] hover:shadow-[0_0_50px_rgba(255,43,43,0.2),_0_20px_60px_-15px_rgba(0,0,0,0.9)]"}>
       {/* Visual background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-accent-red/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
@@ -189,7 +197,7 @@ const VideoCard = ({ video, className, isActive }) => {
           <h3 className="text-lg sm:text-xl font-black uppercase text-white tracking-wide font-display group-hover:text-accent-red transition-colors duration-300">
             {video.title}
           </h3>
-          <p className="text-text-secondary text-xs sm:text-sm mt-3 leading-relaxed font-sans mb-5">
+          <p className={`text-text-secondary mt-3 font-sans mb-5 ${getDescFontSize(video.desc)}`}>
             {video.desc}
           </p>
         </div>
@@ -198,9 +206,10 @@ const VideoCard = ({ video, className, isActive }) => {
           href={video.projectUrl || 'https://abcdwebsite.com'}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full py-4 rounded-2xl border border-accent-red/20 hover:border-accent-red bg-accent-red/5 hover:bg-accent-red/15 text-white font-black text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(255,43,43,0.3)] active:scale-[0.98] cursor-pointer relative z-20 font-display"
+          className="w-full py-4 rounded-2xl border border-accent-red/20 hover:border-accent-red bg-accent-red/5 hover:bg-accent-red/15 text-white font-black text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(255,43,43,0.3)] active:scale-[0.98] cursor-pointer relative z-20 font-display group/btn"
         >
-          View Live Website
+          <span>View Live Website</span>
+          <ArrowUpRight className="w-4 h-4 text-accent-red group-hover/btn:text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
         </a>
       </div>
     </div>

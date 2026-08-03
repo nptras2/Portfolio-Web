@@ -108,13 +108,13 @@ const AboutSection = () => {
               <div className="absolute w-[380px] h-[380px] border border-white/5 rounded-full z-0" />
 
               {/* Glowing core logo */}
-              <div className="w-28 h-28 rounded-full bg-[#050505] border border-accent-red/35 flex flex-col items-center justify-center shadow-[0_0_45px_rgba(255,43,43,0.22)] relative z-10">
+              <div className="w-36 h-36 rounded-full bg-[#050505] border border-accent-red/35 flex flex-col items-center justify-center shadow-[0_0_45px_rgba(255,43,43,0.22)] relative z-10">
                 <img 
                   src={logoImg} 
                   alt="abcdwebsite logo" 
                   className="w-[115%] h-[115%] object-contain rounded-full shadow-[0_0_20px_rgba(255,43,43,0.2)]"
                 />
-                <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-accent-red rounded-full animate-ping" />
+                <div className="absolute top-0 right-0 w-3 h-3 bg-accent-red rounded-full animate-ping" />
               </div>
 
               {/* Top Left Card: PERFORMANCE */}
@@ -189,10 +189,10 @@ const AboutSection = () => {
             {/* Mobile View: Swiper Technology Carousel */}
             <div className="block md:hidden w-full relative z-10">
               <div className="flex flex-col items-center mb-6">
-                <div className="relative w-24 h-24 flex items-center justify-center">
-                  <div className="absolute w-20 h-20 border border-white/5 rounded-full animate-spin-slow" />
-                  <div className="absolute w-[96px] h-[96px] border border-accent-red/10 border-dashed rounded-full animate-spin [animation-duration:25s]" />
-                  <div className="w-20 h-20 rounded-full bg-[#050505] border border-accent-red/35 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(255,43,43,0.18)] z-10">
+                <div className="relative w-32 h-32 flex items-center justify-center">
+                  <div className="absolute w-28 h-28 border border-white/5 rounded-full animate-spin-slow" />
+                  <div className="absolute w-[115px] h-[115px] border border-accent-red/10 border-dashed rounded-full animate-spin [animation-duration:25s]" />
+                  <div className="w-26 h-26 rounded-full bg-[#050505] border border-accent-red/35 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(255,43,43,0.18)] z-10">
                     <img 
                       src={logoImg} 
                       alt="abcdwebsite logo" 

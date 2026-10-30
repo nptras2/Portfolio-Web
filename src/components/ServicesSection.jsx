@@ -21,7 +21,7 @@ const ServicesSection = () => {
   const services = [
     {
       title: 'Basic Landing Page',
-      price: '₹2,000',
+      price: '₹5,000',
       period: 'One-Time Project Price',
       tagline: 'Perfect for simple landing pages, single-page sites, and basic online presence.',
       features: [
@@ -42,7 +42,7 @@ const ServicesSection = () => {
     },
     {
       title: 'Premium Website',
-      price: '₹5,000',
+      price: '₹10,000',
       period: 'One-Time Project Price',
       tagline: 'Complete website with modern UI/UX, advanced animations, and dynamic interactive elements.',
       features: [
@@ -64,18 +64,18 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section 
-      id="services" 
+    <section
+      id="services"
       className="py-14 md:py-32 bg-bg-primary relative overflow-hidden"
     >
       <div className="absolute top-1/4 right-0 w-[450px] h-[450px] bg-accent-red/[0.04] rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-accent-red/[0.04] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="content-container relative z-10">
-        
+
         {/* Header */}
         <div className="text-center mb-24">
-          <motion.span 
+          <motion.span
             className="text-[10px] font-black uppercase tracking-widest text-accent-red glow-text block mb-3 font-display"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ const ServicesSection = () => {
           >
             TRANSPARENT PRICING
           </motion.span>
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight font-display"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ const ServicesSection = () => {
           >
             Services & Packages
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-text-secondary text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed font-sans"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -192,11 +192,10 @@ const ServicesSection = () => {
                   {/* CTA Action Button */}
                   <button
                     onClick={scrollToContact}
-                    className={`w-full py-4 rounded-xl uppercase font-black text-xs tracking-widest font-display transition-all duration-300 flex items-center justify-center gap-2 ${
-                      service.highlighted
-                        ? 'bg-gradient-to-r from-accent-red via-[#e61b1b] to-accent-dark hover:from-accent-dark hover:to-accent-red text-white shadow-lg shadow-accent-red/25 hover:shadow-accent-red/45 hover:-translate-y-0.5 active:translate-y-0'
-                        : 'border border-white/10 hover:border-accent-red bg-white/2 hover:bg-accent-red/5 text-white hover:-translate-y-0.5 active:translate-y-0'
-                    }`}
+                    className={`w-full py-4 rounded-xl uppercase font-black text-xs tracking-widest font-display transition-all duration-300 flex items-center justify-center gap-2 ${service.highlighted
+                      ? 'bg-gradient-to-r from-accent-red via-[#e61b1b] to-accent-dark hover:from-accent-dark hover:to-accent-red text-white shadow-lg shadow-accent-red/25 hover:shadow-accent-red/45 hover:-translate-y-0.5 active:translate-y-0'
+                      : 'border border-white/10 hover:border-accent-red bg-white/2 hover:bg-accent-red/5 text-white hover:-translate-y-0.5 active:translate-y-0'
+                      }`}
                   >
                     Choose {service.title}
                     <ArrowRight className="w-4 h-4" />
@@ -250,7 +249,7 @@ const ServicesSection = () => {
 
         {/* Mobile View (Redesigned for Premium Swipeable Carousel & Accordions) */}
         <div className="block lg:hidden max-w-sm mx-auto px-2 relative z-10">
-          
+
           {/* Subtle 3D Holographic Background Sphere */}
           <div className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] pointer-events-none opacity-45 z-0 overflow-visible">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,43,43,0.18)_0%,transparent_60%)] blur-2xl animate-pulse" />
@@ -276,7 +275,7 @@ const ServicesSection = () => {
               <line x1="100" y1="28" x2="100" y2="172" stroke="#FF2B2B" strokeWidth="0.5" opacity="0.25" strokeDasharray="3 3" />
               <line x1="28" y1="100" x2="172" y2="100" stroke="#FF2B2B" strokeWidth="0.5" opacity="0.25" strokeDasharray="3 3" />
             </svg>
-            
+
             {/* Animated particles */}
             <div className="absolute top-[20%] left-[25%] w-1.5 h-1.5 bg-white rounded-full opacity-60 animate-pulse" />
             <div className="absolute top-[75%] left-[15%] w-1 h-1 bg-accent-red rounded-full opacity-80 animate-ping [animation-duration:3s]" />
@@ -290,11 +289,10 @@ const ServicesSection = () => {
               <button
                 key={idx}
                 onClick={() => setActiveCardIndex(idx)}
-                className={`flex-1 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${
-                  activeCardIndex === idx
-                    ? 'bg-accent-red text-white shadow-[0_0_15px_rgba(255,43,43,0.45)]'
-                    : 'text-text-secondary hover:text-white'
-                }`}
+                className={`flex-1 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 ${activeCardIndex === idx
+                  ? 'bg-accent-red text-white shadow-[0_0_15px_rgba(255,43,43,0.45)]'
+                  : 'text-text-secondary hover:text-white'
+                  }`}
               >
                 {service.title.split(' ')[0]}
               </button>
@@ -319,11 +317,10 @@ const ServicesSection = () => {
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.96, x: -20 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className={`glass-card p-6 rounded-[28px] border relative flex flex-col justify-between overflow-hidden z-10 w-full min-h-[460px] ${
-              services[activeCardIndex].highlighted 
-                ? 'border-accent-red/35 shadow-[0_0_30px_rgba(255,43,43,0.08)]' 
-                : 'border-white/5'
-            }`}
+            className={`glass-card p-6 rounded-[28px] border relative flex flex-col justify-between overflow-hidden z-10 w-full min-h-[460px] ${services[activeCardIndex].highlighted
+              ? 'border-accent-red/35 shadow-[0_0_30px_rgba(255,43,43,0.08)]'
+              : 'border-white/5'
+              }`}
           >
             {/* Popular choice indicator */}
             {services[activeCardIndex].highlighted && (
@@ -362,9 +359,8 @@ const ServicesSection = () => {
               <div className="mb-3">
                 <button
                   onClick={() => setFeaturesOpen(!featuresOpen)}
-                  className={`w-full py-2.5 px-4 bg-white/2 hover:bg-white/4 rounded-xl border border-white/5 flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white transition-all font-display ${
-                    featuresOpen ? 'rounded-b-none border-b-transparent' : ''
-                  }`}
+                  className={`w-full py-2.5 px-4 bg-white/2 hover:bg-white/4 rounded-xl border border-white/5 flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white transition-all font-display ${featuresOpen ? 'rounded-b-none border-b-transparent' : ''
+                    }`}
                 >
                   <span className="flex items-center gap-2">
                     <Check className="w-3.5 h-3.5 text-accent-red" />
@@ -401,9 +397,8 @@ const ServicesSection = () => {
                 <div className="mb-6">
                   <button
                     onClick={() => setExtrasOpen(!extrasOpen)}
-                    className={`w-full py-2.5 px-4 bg-white/2 hover:bg-white/4 rounded-xl border border-white/5 flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white transition-all font-display ${
-                      extrasOpen ? 'rounded-b-none border-b-transparent' : ''
-                    }`}
+                    className={`w-full py-2.5 px-4 bg-white/2 hover:bg-white/4 rounded-xl border border-white/5 flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-white transition-all font-display ${extrasOpen ? 'rounded-b-none border-b-transparent' : ''
+                      }`}
                   >
                     <span className="flex items-center gap-2">
                       <Layers className="w-3.5 h-3.5 text-accent-red" />
@@ -438,11 +433,10 @@ const ServicesSection = () => {
             {/* CTA Button */}
             <button
               onClick={scrollToContact}
-              className={`w-full py-3.5 mt-2 rounded-xl uppercase font-black text-[10px] tracking-widest font-display transition-all duration-300 flex items-center justify-center gap-2 ${
-                services[activeCardIndex].highlighted
-                  ? 'bg-gradient-to-r from-accent-red via-[#e61b1b] to-accent-dark hover:from-accent-dark hover:to-accent-red text-white shadow-md shadow-accent-red/20'
-                  : 'border border-white/10 hover:border-accent-red bg-white/2 hover:bg-accent-red/5 text-white'
-              }`}
+              className={`w-full py-3.5 mt-2 rounded-xl uppercase font-black text-[10px] tracking-widest font-display transition-all duration-300 flex items-center justify-center gap-2 ${services[activeCardIndex].highlighted
+                ? 'bg-gradient-to-r from-accent-red via-[#e61b1b] to-accent-dark hover:from-accent-dark hover:to-accent-red text-white shadow-md shadow-accent-red/20'
+                : 'border border-white/10 hover:border-accent-red bg-white/2 hover:bg-accent-red/5 text-white'
+                }`}
             >
               Choose {services[activeCardIndex].title.split(' ')[0]}
               <ArrowRight className="w-3.5 h-3.5" />
@@ -455,11 +449,10 @@ const ServicesSection = () => {
               <button
                 key={idx}
                 onClick={() => setActiveCardIndex(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  activeCardIndex === idx 
-                    ? 'bg-accent-red w-7 shadow-[0_0_10px_#FF2B2B]' 
-                    : 'bg-white/15'
-                }`}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeCardIndex === idx
+                  ? 'bg-accent-red w-7 shadow-[0_0_10px_#FF2B2B]'
+                  : 'bg-white/15'
+                  }`}
               />
             ))}
           </div>
@@ -468,9 +461,8 @@ const ServicesSection = () => {
           <div className="relative z-10 w-full mb-4">
             <button
               onClick={() => setRulesOpen(!rulesOpen)}
-              className={`w-full py-3.5 px-5 bg-white/2 hover:bg-white/4 rounded-2xl border border-white/5 flex items-center justify-between text-xs font-black uppercase tracking-widest text-white transition-all font-display ${
-                rulesOpen ? 'rounded-b-none border-b-transparent' : ''
-              }`}
+              className={`w-full py-3.5 px-5 bg-white/2 hover:bg-white/4 rounded-2xl border border-white/5 flex items-center justify-between text-xs font-black uppercase tracking-widest text-white transition-all font-display ${rulesOpen ? 'rounded-b-none border-b-transparent' : ''
+                }`}
             >
               <span className="flex items-center gap-2.5">
                 <HelpCircle className="w-4 h-4 text-accent-red" />
